@@ -32,5 +32,5 @@
 ### Topological Sort
 * This algorithm sorts a graph on the basis of some creiteria
 * Here is how it goes
-    * First convert the **(int[][] edges)** to an Adj List mostly of type **Map\<T, Set\<T>>** (T = generic)
+    * First convert the **(int[][] edges)** to an Adj List mostly of type **(Map\<T, Set\<T>>)** (T = generic)
 
