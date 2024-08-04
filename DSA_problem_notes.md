@@ -49,7 +49,7 @@
 * Explaintion: 
     * There are basically two branches to the decision tree
     * One where you only consider the current character
-    * The other where the current character and the next character do not exceed 26
+    * The other where you consider the current character and the next character only if they do not exceed 26 i.e. 'Z'
     * The base considitons are that if idx >= s.length() return 1 
     * And if s.charAt(idx) == '0' return 0 (because the string cannot be decoded if it starts with leading zeros)
 
