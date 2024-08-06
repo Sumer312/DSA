@@ -62,3 +62,44 @@
         * While doing dfs if you encounter a node that has an empty set in map or a node that exists in the visited set (to optimize) then return true
         * While doing dfs if you encounter a node that is present in the seen set then return false because that means a cicrular dependency
     * While doing dfs on nodes 0 to numCourses if you encounter false even once return false else return true
+
+
+[**Jump Game**](https://leetcode.com/problems/jump-game/)
+ 
+* Example nums = [2,3,1,1,4]
+* Explaintion: 
+    * Just look at the problem differently.
+    * Instead of solving the problem from index 0 and going forward, go backwards.
+    * By backwards I mean start at the 2nd last index beause that last index is our destination and also set a variable prev = nume.length - 1
+    * Now if i + nums[i] >= prev then set prev to i
+    * When loop is finished if prev == 0 return true else false
+    * This approach has O(1) space and O(n) time
+* Another approach with O(n) space and O(nk) time, (k is nums[i])
+    ```java
+    [2, 3, 1, 1, 4] (int)
+    [T, T, T, T, T] (boolean)
+    ```
+    * Same as the above approach but here you initialize a boolean array and traverse backwards
+    * The reason it is O(nk) is because inside the loop we have another loop 
+        ```java
+        boolean[] flag = new boolean[nums.length]
+        flag[flag.length - 1] = true;
+        for(int i = nums.length - 2; i >= 0; i++){
+            int j = 0;
+            while(j < 0){
+                if(i + nums[i] - j > nums.length - 1 || flag[i + nums[i] - j]){
+                flag[i] = true;
+                }
+            }
+        }
+        return flag[0]
+        ```
+* This approach is just a little easier to understand for new folks
+
+[**Last Stone Weight**](https://leetcode.com/problems/last-stone-weight/)
+ 
+* Explaintion: 
+    * Easy problem, just use a max heap
+    * In the loop "while(!pq.isEmpty())" pop 2 elements from the heap
+    * If after one element is popped the heap becomes empty just return the popped value
+    * Else return 0 after loop
