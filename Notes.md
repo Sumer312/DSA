@@ -28,9 +28,41 @@
     * DO NOT DOUBLE THE VALUES WHILE PARSING THE SECOND MAP
     * it will not work on anagrams that have duplicates
 
+* To take out transpose of a matrix in-place do this (transpose of am matrix in-place can only be possible if matrix.length == matrix[0].length)
+    * Example:
+        ``` 
+        1  2  3
+        4  5  6
+        7  8  9
+        ```
+    * Now before you start traversing the matrix create a varible col and initiliaze it to 0.
+    * Now the first for loop will run from 0 to matrix.length - 1
+    * The second for loop will run from col to matrix[i].length - 1 and col will increment after every iteration of the first for loop
+    * This is how the process looks like
+        ``` 
+        i = 0, col = 0, j = col
+
+        1  4  7
+        2  5  6
+        3  8  9
+
+        i = 1, col = 1, j = col
+
+        1  4  7
+        2  5  8
+        3  6  9
+
+        i = 2, col = 2, j = col
+
+        1  4  7
+        2  5  8
+        3  6  9
+        ```
+
 # Concepts
 ### Topological Sort
 * This algorithm sorts a graph on the basis of some creiteria
 * Here is how it goes
     * First convert the **(int[][] edges)** to an Adj List mostly of type **(Map\<T, Set\<T>>)** (T = generic)
+
 

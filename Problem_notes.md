@@ -1,4 +1,4 @@
-# Blind 75
+# Neetcode 150
 [**Longest common subsequence**](https://leetcode.com/problems/longest-common-subsequence/)
  
 *  Example: text1 = "abcd" text2 = "affceed"
@@ -103,3 +103,34 @@
     * In the loop "while(!pq.isEmpty())" pop 2 elements from the heap
     * If after one element is popped the heap becomes empty just return the popped value
     * Else return 0 after loop
+
+[**Rotate Image**](https://leetcode.com/problems/rotate-image/)
+ 
+* Example:
+    ``` 
+    matrix =
+
+    1  2  3
+    4  5  6
+    7  8  9
+    ```
+* Explaintion: 
+    * First do a transpose of matrix in-place, (since in the testcases of this problem number of rows is equal to the number of columns of the matrix)
+    * To do the transpose of a matix in-place refer notes 
+    * This is what the matrix will look like after the transpose
+        ``` 
+        matrix =
+
+        1  4  7
+        2  5  8
+        3  6  9
+        ```
+    * Now if you observe carefully you just have to swap the elements at matrix[i][j] with matrix[i][matrix[i].length - j - 1]
+    * And that's it
+        ``` 
+        matrix =
+
+        7  4  1 
+        8  5  2 
+        9  6  3 
+        ```
