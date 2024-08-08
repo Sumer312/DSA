@@ -1,5 +1,5 @@
 # Neetcode 150
-[**Longest common subsequence**](https://leetcode.com/problems/longest-common-subsequence/)
+#### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
  
 *  Example: text1 = "abcd" text2 = "affceed"
     ```
@@ -15,7 +15,7 @@
     * If text1.charAt(i) == text2.charAt(j) then increment both in next recursion call
     * Else increment one in one call and increment the other in the other call
 
-[**Longest palindromic subsequence**](https://leetcode.com/problems/longest-palindromic-subsequence/)
+#### [Longest palindromic subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/)
  
 *  Example: s = "hanna"
     ```
@@ -30,7 +30,7 @@
 * Explaintion: 
     * Same as the above question except the second string is just the first string reversed here 
 
-[**Edit Distance**](https://leetcode.com/problems/edit-distance/)
+#### [Edit Distance](https://leetcode.com/problems/edit-distance/)
  
 * Examplt word1 = "horse", word2 = "ros" 
 * Explaintion: 
@@ -43,7 +43,7 @@
         * Third you insert where you do a 1 + dfs(word1, word2, i, j + 1)
     * If (i >= w1.length() && j >= w2.length()) { return 0; }
 
-[**Decode Ways**](https://leetcode.com/problems/decode-ways/)
+#### [Decode Ways](https://leetcode.com/problems/decode-ways/)
  
 * Examplt s = "226" 
 * Explaintion: 
@@ -53,7 +53,7 @@
     * The base considitons are that if idx >= s.length() return 1 
     * And if s.charAt(idx) == '0' return 0 (because the string cannot be decoded if it starts with leading zeros)
 
-[**Course Schedule**](https://leetcode.com/problems/course-schedule/)
+#### [Course Schedule](https://leetcode.com/problems/course-schedule/)
  
 * Explaintion: 
     * First convert edges array to Map<Integer, Set\<Integer>> map
@@ -64,7 +64,7 @@
     * While doing dfs on nodes 0 to numCourses if you encounter false even once return false else return true
 
 
-[**Jump Game**](https://leetcode.com/problems/jump-game/)
+#### [Jump Game](https://leetcode.com/problems/jump-game/)
  
 * Example nums = [2,3,1,1,4]
 * Explaintion: 
@@ -96,7 +96,7 @@
         ```
 * This approach is just a little easier to understand for new folks
 
-[**Last Stone Weight**](https://leetcode.com/problems/last-stone-weight/)
+#### [Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)
  
 * Explaintion: 
     * Easy problem, just use a max heap
@@ -104,7 +104,7 @@
     * If after one element is popped the heap becomes empty just return the popped value
     * Else return 0 after loop
 
-[**Rotate Image**](https://leetcode.com/problems/rotate-image/)
+#### [Rotate Image](https://leetcode.com/problems/rotate-image/)
  
 * Example:
     ``` 
@@ -134,3 +134,114 @@
         8  5  2 
         9  6  3 
         ```
+#### [Binary Level Order Treversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+ 
+```
+            (1)   
+        /         \ 
+      (4)         (7)
+    /     \     /                  
+  (2)     (9) (8)                
+
+Level order treversal = 
+[[1],[4,7],[2,9,8]]
+```
+
+* Explaintion: 
+    * Very simple, initialize a queue of type TreeNode, add root to the queue
+    * After that start the loop
+    * Inside the loop declare a variable size and initialize it to queue.size()
+    * Start a nested loop where the condition is size > 0
+    * Add q.poll().val to a list and check if it has any left or right and if it does add those to the queue
+    * Decrement the size variable
+    * Pseudocode
+        ```java
+        List<List<Integer>> res = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+         while(!q.isEmpty()){
+            int size = q.size();
+            List<Integer> list = new LinkedList<>();
+            while(size > 0){
+                TreeNode temp = q.poll();
+                list.add(temp.val);
+                if(temp.left != null){
+                    q.offer(temp.left);
+                }
+                if(temp.right != null){
+                    q.offer(temp.right);
+                }
+                size--;
+            }
+            res.add(list);
+        }
+        ```
+
+
+#### [Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)
+ 
+* First off read the question properly and if you do not understand come back to it later, honestly this was such an easy question that I had just ignored for the longest amount of time because I did not put effort into understanding the question
+* Explaintion: 
+    * The question is just asking you to give the right side view of the tree i.e the right most non null elements
+    * The solution is simple, just do a level order trevresal and then add the right most elements of the tree, i.e. the last element of every level to a list
+        ```
+                        (1)   
+                    /         \ 
+                  (4)         (7)
+                /     \     /                  
+              (2)     (9) (8)                
+
+          Level order treversal = 
+          [[1],[4,7],[2,9,8]]
+          
+          Right Side View = 
+          [1,7,8]
+        ```
+
+#### [Reorder List](https://leetcode.com/problems/reorder-list/)
+ 
+* There are 2 approaches to solve this problem, both use linear time, one uses constant space and other uses linear space
+    * O(n) space approach
+        * Very simple, just traverse the list and add each node into an arraylist
+        * Then initialize 2 pointers i and j, i = 0 and j = list.size() - 1
+        * Create a new ListNode dummy
+        * dummy = new ListNode(0)
+        * Now first attach the node at i and increment i and then attach node at j to dummy and decrement j
+        * return dummy.next
+    * O(1) space approach
+        * Find the mid node in the list (fast and slow pointer approach)
+        * Then store mid.next in another variable of type ListNode 
+        * Now do a dfs on the second half (the variable that stores mid.next) of the list using recursion and initialize a pointer to head 
+        * Now when you reach the last node assign last node to pointer.next and move the pointer to pointer.next
+        * Now the function will return the the function above in the recursive call where the current node is second last node and do the same
+
+#### [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+ 
+* Explaintion:
+    * Create 2 functions, findPivot() and binarySearch()
+        ```
+        [4,5,6,7,0,1,2]
+               p
+        [5,6,7,0,1,2,4]
+             p  
+        [5,1,3]
+         p
+        ```
+    * Here is how you find the pivot
+        *  ```java
+            int l = 0, r = nums.length - 1;
+            while(l <= r){
+                int m = l + (r - l) / 2;
+                if(m - 1 >= 0 && nums[m - 1] < nums[m] && m + 1 < nums.length && nums[m + 1] < nums[m]){
+                    return m;
+                } else if(m - 1 >= 0 && nums[m - 1] > nums[m]){
+                    return m - 1;
+                } else if(nums[l] > nums[m]){
+                    r = m - 1;
+                } else {
+                    l = m + 1;
+                }
+            }
+            return -1;
+            ```
+    * Now you search from (0 to p) and from (p + 1 to nums.length - 1)
