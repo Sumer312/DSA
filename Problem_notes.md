@@ -289,6 +289,3 @@ Level order treversal =
          return;
     }
     ```
-    * Here is how the list and res change throughout recursion
-
-
