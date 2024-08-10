@@ -245,3 +245,50 @@ Level order treversal =
             return -1;
             ```
     * Now you search from (0 to p) and from (p + 1 to nums.length - 1)
+    
+#### [Permutations](https://leetcode.com/problems/permutations/)
+* Explaintion:
+    * Easy backtracking problem, traverse through the array
+    * Add the current element to a list and do a recursive call
+    * In the next call the loop should start from the beginning ( here there is no idx in the parameter )
+    * To make sure that there are no duplicates add this check in the loop
+     ```java
+         if(list.contains(nums[i])){
+             continue;
+         }
+     ```
+     * One optimimization you can make is use a hashset instead of a list because the problem specifies that there are no duplicates in the array
+
+#### [Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/)
+
+* Example s = "abab"
+    ```
+    list =          
+    ["a", "b", "a", "b"]
+    ["a", "bab"]
+    ["aba", "b"]
+
+    res = 
+    [["a", "b", "a", "b"]
+    ["a", "bab"]
+    ["aba", "b"]]
+    ```
+* Explaintion:
+    * Backtracking problem, here we are going to have 2 functions, one is gonna be the recursive function and the other function will check if a string is a palindrome or not
+    * The palindrome function is easy to implement
+    * The recursive function's parameters are (String s, int idx)
+    * Start a for loop where i = idx and inside the loop create a substring from idx to i
+    ```java
+    String sub = s.substring(idx, i)
+    ```
+    * If sub is a palindrome add sub to list and do a recursive call to the function and idx = i + 1
+    * In the base condition you have
+    ```java
+    if(idx >= s.length()){
+         res.add(new LinkedList(list));
+         return;
+    }
+    ```
+    * Here is how the list and res change throughout recursion
+
+
