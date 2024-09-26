@@ -10,7 +10,6 @@ type node struct {
 	w int
 }
 
-// Max Heap
 type MinHeap struct {
 	data []node
 }
@@ -87,7 +86,7 @@ func (h *MinHeap) rightChild(index int) int {
 	return 2*index + 2
 }
 
-func dijstra() {
+func dijkstra() {
 	var length int = 5
 	var source int = 1
 	var dists []int = make([]int, length+1)
@@ -103,9 +102,7 @@ func dijstra() {
 
 	list[3] = append(list[3], node{4, 0})
 
-
 	list[4] = append(list[4], node{5, 0})
-
 
 	h := MinHeap{[]node{}}
 	dists[source] = 0
@@ -135,4 +132,7 @@ func dijstra() {
 		fmt.Printf("%d -> %d = %d\n", source, i, dists[i])
 	}
 
+}
+func main() {
+	dijkstra()
 }
