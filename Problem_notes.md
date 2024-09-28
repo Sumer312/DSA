@@ -303,9 +303,15 @@ Level order treversal =
 #### [Minimum operations to make binary array elements equal to one 2](https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-ii/)
 * Explanation:
     * Similar to minimum suffix flips, only here the premise is reversed, you are given some random string and you need to return the minimum number of operations you convert that string to a string containing all zeros
+#### [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
+* Explanation:
+    * Here you have to just do an inorder traversal and declare and initialize a variable prev to Long.min_value and when the leftmost leaf or the smallest element is reached you have to check if the prev >= root.val 
+    * and if it is the return false
+    * else prev = root.val
+    * basically here we are checking if the inorder traversal of the tree is sorted
 #### [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
 #### [First-Missing-Positive](https://leetcode.com/problems/first-missing-positive/)
 #### [Gas Station](https://leetcode.com/problems/gas-station/)
 #### [Valid Parenthesis String](https://leetcode.com/problems/gas-station/)
 #### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
-#### [Subarray witn k different intergers](https://leetcode.com/problems/subarrays-with-k-different-integers/)
+#### [Subarray with k different intergers](https://leetcode.com/problems/subarrays-with-k-different-integers/)
