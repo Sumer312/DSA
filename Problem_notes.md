@@ -309,6 +309,26 @@ Level order treversal =
     * and if it is the return false
     * else prev = root.val
     * basically here we are checking if the inorder traversal of the tree is sorted
+#### [Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+* Explanation:
+    * First learn how to detect anagrams
+    * Here I will refer a string in the string array as word
+    * Here you will also require a hashmap of <String, List\<String>\>
+    * Now we traverse the string array
+    * Then to group them what we do is we use an array of size 26 (because 26 alphabets) as a dict
+    * After that we record each instance of a char in the word in the string array
+    * Then we convert that array to a string
+    * Then we use the hashmap and store the word in the string array in a list with the key being the dict string
+    * If any other word has the same dict string then it will be added to them same list that is pointed to by the dict string
+
+* Example:
+    ```java
+    String s1 = "eat";
+    String s2 = "tea";
+    ```
+    dict string of s1 = "10001000000000000001000000"\
+    dict string of s2 = "10001000000000000001000000"
+
 #### [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
 #### [First-Missing-Positive](https://leetcode.com/problems/first-missing-positive/)
 #### [Gas Station](https://leetcode.com/problems/gas-station/)
