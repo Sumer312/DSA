@@ -320,6 +320,7 @@ Level order treversal =
     * Then we convert that array to a string
     * Then we use the hashmap and store the word in the string array in a list with the key being the dict string
     * If any other word has the same dict string then it will be added to them same list that is pointed to by the dict string
+    * You cannot use the int[] directly as key because then the map will store the pointer to the array as the key and not the content of the array
 
 * Example:
     ```java
