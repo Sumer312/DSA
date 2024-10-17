@@ -336,7 +336,7 @@ Level order treversal =
     * Now the idea is you peek the top element from the heap and then you run a loop from 0 to groupSize (given in params)
     * Now you pop one digit out of the heap, then you check if then polled digit is equal to the peeked digit + i and if it is not return false
     * Something like this
-    * ```java
+      ```java
         while(!pq.isEmpty()){
             int peek = pq.peek();
             for(int i = 0; i < groupSize; i++){
