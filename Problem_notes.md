@@ -330,6 +330,28 @@ Level order treversal =
     dict string of s1 = "10001000000000000001000000"\
     dict string of s2 = "10001000000000000001000000"
 
+#### [Hand of Straights](https://leetcode.com/problems/hand-of-straights/)
+* Explanation:
+    * Here you have to put all the unique digits of the array in a min heap and you also have to record the occurrences of all the digits using a map or an array
+    * Now the idea is you peek the top element from the heap and then you run a loop from 0 to groupSize (given in params)
+    * Now you pop one digit out of the heap, then you check if then polled digit is equal to the peeked digit + i and if it is not return false
+    * Something like this
+    * ```java
+        while(!pq.isEmpty()){
+            int peek = pq.peek();
+            for(int i = 0; i < groupSize; i++){
+                int poll = pq.poll();
+                if(poll != peek + i){
+                    return false;
+                }
+            }
+        }
+
+        ```
+    * Note: You will now get the solution if you yank and paste this code
+    * Then you check if the digit has more than one occurrence, and if it does then just put it in a set or something and decrement its occurrence in the occurrence map
+    * When the for loop ends add the elements back into the heap that are there in the set where you recorded the digits which had more than one occurrence
+    * If everything executes and the while loop is exited return true
 #### [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
 #### [First-Missing-Positive](https://leetcode.com/problems/first-missing-positive/)
 #### [Gas Station](https://leetcode.com/problems/gas-station/)
