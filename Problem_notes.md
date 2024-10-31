@@ -444,6 +444,9 @@ Level order treversal =
         * So we just find the bit where both 3 and 5 differ and turn it into an int which is variable d
         * Now pay attention to the if condition. If we use that then res[0] will only perform an xor with the half that has 3 and some duplicates and 5 res[1] will perform xor with 5 and the other duplicates
         * Note that all the duplicate numbers will only be part of one group, i.e. if there are 2 occurrences of 2 then both of those occurrences will be XORed in res[0] only
+        * One more thing, if you are confused about doing the AND operation to find the differing bit this might help
+            * XOR basically means if a bit of the 2 operands are different then the corresponding bit of the result is 1 else 0
+            * So to find which bit is 1 we keep doing an AND operation to the XORed bit until the result is not 0
 
 #### [Partition Labels](https://leetcode.com/problems/partition-labels/)
 
