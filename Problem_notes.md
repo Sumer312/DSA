@@ -389,6 +389,61 @@ Level order treversal =
     - total - minimum_sum_subarray
     - maximum_sum_subarray
   - And also if the total and the minimum_sum_subarray are equal then just return the maximum_sum_subarray because if they are equal then that implies the entire array consists of only negative numbers and therefore the maximum_sum_subarray will have the largest negative number
+#### [Single number 3](https://leetcode.com/problems/single-number-iii/)
+* Prerequisite: single number 1
+* Example array : [1,2,1,3,2,5]
+* Explanation:
+    * In the first problem there was only one unique number, there there are 2
+    * So to solve this do an normal XOR operation on the array and store the result in a variable say x.
+    * Then find out the differing bit, what I mean by that is this
+        * let's say the 2 unique numbers are 3 and 5, 
+        * 3 ^ 5 = 6
+        * ```java
+               3 = 011
+               5 = 101
+               therefore when we perform an xor we get
+               0 1 1
+               1 0 1
+               -----
+               1 1 0
+
+               6 = 110
+            ```
+        * now here you can see that the differing bit is the MSB and the one to the right of it
+        * we just care about finding one differing bit, could be anyone
+        * the reason for it is that if we have that bit then every number that has a 1 will be separated into one group and every number that has a 0 will be separated into another group
+    * So now we have the XORed bit which is 6
+    * Now to find the differing bit we will keep performing an and operation between 1 and 6 until we find the differing bit
+        * ```java
+            // x = XORed bit i.e. 6
+            int d = 1;
+            while((x & d) == 0){
+                d = d << 1;
+            }
+            /*
+            d = 1   d = 2            
+
+            0 0 1   0 1 0            
+            1 1 0   1 1 0            
+            -----   -----            
+            0 0 0   0 1 0            
+            */
+            // from the above operations we know that d = 2;
+            // now traverse through the entire array
+            int[] res = new int[2];
+            Arrays.fill(res, 0);
+            for(int i : arr){
+                if((d & i) == 0){
+                    res[0] ^= i;
+                } else {
+                    res[1] ^= i;
+                }
+            }
+            ```
+        * The reason why this works is because all 3 has 1 in its 2nd to the MSB place and 5 does not
+        * So we just find the bit where both 3 and 5 differ and turn it into an int which is variable d
+        * Now pay attention to the if condition. If we use that then res[0] will only perform an xor with the half that has 3 and some duplicates and 5 res[1] will perform xor with 5 and the other duplicates
+        * Note that all the duplicate numbers will only be part of one group, i.e. if there are 2 occurrences of 2 then both of those occurrences will be XORed in res[0] only
 
 #### [Partition Labels](https://leetcode.com/problems/partition-labels/)
 
