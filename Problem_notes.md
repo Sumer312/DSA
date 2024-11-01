@@ -447,7 +447,13 @@ Level order treversal =
         * One more thing, if you are confused about doing the AND operation to find the differing bit this might help
             * XOR basically means if a bit of the 2 operands are different then the corresponding bit of the result is 1 else 0
             * So to find which bit is 1 we keep doing an AND operation to the XORed bit until the result is not 0
-
+#### [Generate parentheses](https://leetcode.com/problems/generate-parentheses/)
+* Explanation:
+    * Here you need to keep track of one thing, and this is a closed parentheses can only be added to the string if an open one already exists
+    * So to do that we keep track of two variables 'o' and 'c'
+    * Add an open parentheses to the string and decrement o
+    * And if c > o i.e. there are more open parentheses in the current string than closed ones then you can add a closed parentheses and decrement c
+    * Once both o and c are 0 then add the current string to the result list of type string.
 #### [Partition Labels](https://leetcode.com/problems/partition-labels/)
 
 #### [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
