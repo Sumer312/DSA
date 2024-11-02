@@ -389,71 +389,148 @@ Level order treversal =
     - total - minimum_sum_subarray
     - maximum_sum_subarray
   - And also if the total and the minimum_sum_subarray are equal then just return the maximum_sum_subarray because if they are equal then that implies the entire array consists of only negative numbers and therefore the maximum_sum_subarray will have the largest negative number
+
 #### [Single number 3](https://leetcode.com/problems/single-number-iii/)
-* Prerequisite: single number 1
-* Example array : [1,2,1,3,2,5]
-* Explanation:
-    * In the first problem there was only one unique number, there there are 2
-    * So to solve this do an normal XOR operation on the array and store the result in a variable say x.
-    * Then find out the differing bit, what I mean by that is this
-        * let's say the 2 unique numbers are 3 and 5, 
-        * 3 ^ 5 = 6
-        * ```java
-               3 = 011
-               5 = 101
-               therefore when we perform an xor we get
-               0 1 1
-               1 0 1
-               -----
-               1 1 0
 
-               6 = 110
-            ```
-        * now here you can see that the differing bit is the MSB and the one to the right of it
-        * we just care about finding one differing bit, could be anyone
-        * the reason for it is that if we have that bit then every number that has a 1 will be separated into one group and every number that has a 0 will be separated into another group
-    * So now we have the XORed bit which is 6
-    * Now to find the differing bit we will keep performing an and operation between 1 and 6 until we find the differing bit
-        * ```java
-            // x = XORed bit i.e. 6
-            int d = 1;
-            while((x & d) == 0){
-                d = d << 1;
-            }
-            /*
-            d = 1   d = 2            
+- Prerequisite: single number 1
+- Example array : [1,2,1,3,2,5]
+- Explanation:
 
-            0 0 1   0 1 0            
-            1 1 0   1 1 0            
-            -----   -----            
-            0 0 0   0 1 0            
-            */
-            // from the above operations we know that d = 2;
-            // now traverse through the entire array
-            int[] res = new int[2];
-            Arrays.fill(res, 0);
-            for(int i : arr){
-                if((d & i) == 0){
-                    res[0] ^= i;
-                } else {
-                    res[1] ^= i;
-                }
+  - In the first problem there was only one unique number, there there are 2
+  - So to solve this do an normal XOR operation on the array and store the result in a variable say x.
+  - Then find out the differing bit, what I mean by that is this
+
+    - let's say the 2 unique numbers are 3 and 5,
+    - 3 ^ 5 = 6
+    - ```java
+           3 = 011
+           5 = 101
+           therefore when we perform an xor we get
+           0 1 1
+           1 0 1
+           -----
+           1 1 0
+
+           6 = 110
+      ```
+
+    - now here you can see that the differing bit is the MSB and the one to the right of it
+    - we just care about finding one differing bit, could be anyone
+    - the reason for it is that if we have that bit then every number that has a 1 will be separated into one group and every number that has a 0 will be separated into another group
+
+  - So now we have the XORed bit which is 6
+  - Now to find the differing bit we will keep performing an and operation between 1 and 6 until we find the differing bit
+
+    - ```java
+        // x = XORed bit i.e. 6
+        int d = 1;
+        while((x & d) == 0){
+            d = d << 1;
+        }
+        /*
+        d = 1   d = 2
+
+        0 0 1   0 1 0
+        1 1 0   1 1 0
+        -----   -----
+        0 0 0   0 1 0
+        */
+        // from the above operations we know that d = 2;
+        // now traverse through the entire array
+        int[] res = new int[2];
+        Arrays.fill(res, 0);
+        for(int i : arr){
+            if((d & i) == 0){
+                res[0] ^= i;
+            } else {
+                res[1] ^= i;
             }
-            ```
-        * The reason why this works is because all 3 has 1 in its 2nd to the MSB place and 5 does not
-        * So we just find the bit where both 3 and 5 differ and turn it into an int which is variable d
-        * Now pay attention to the if condition. If we use that then res[0] will only perform an xor with the half that has 3 and some duplicates and 5 res[1] will perform xor with 5 and the other duplicates
-        * Note that all the duplicate numbers will only be part of one group, i.e. if there are 2 occurrences of 2 then both of those occurrences will be XORed in res[0] only
-        * One more thing, if you are confused about doing the AND operation to find the differing bit this might help
-            * XOR basically means if a bit of the 2 operands are different then the corresponding bit of the result is 1 else 0
-            * So to find which bit is 1 we keep doing an AND operation to the XORed bit until the result is not 0
+        }
+      ```
+
+    - The reason why this works is because all 3 has 1 in its 2nd to the MSB place and 5 does not
+    - So we just find the bit where both 3 and 5 differ and turn it into an int which is variable d
+    - Now pay attention to the if condition. If we use that then res[0] will only perform an xor with the half that has 3 and some duplicates and 5 res[1] will perform xor with 5 and the other duplicates
+    - Note that all the duplicate numbers will only be part of one group, i.e. if there are 2 occurrences of 2 then both of those occurrences will be XORed in res[0] only
+    - One more thing, if you are confused about doing the AND operation to find the differing bit this might help
+      - XOR basically means if a bit of the 2 operands are different then the corresponding bit of the result is 1 else 0
+      - So to find which bit is 1 we keep doing an AND operation to the XORed bit until the result is not 0
+
 #### [Generate parentheses](https://leetcode.com/problems/generate-parentheses/)
-* Explanation:
-    * Here you need to keep track of one thing, and this is a closed parentheses can only be added to the string if an open one already exists
-    * So to do that we keep track of two variables 'o' and 'c'
-    * Add an open parentheses to the string and decrement o
-    * And if c > o i.e. there are more open parentheses in the current string than closed ones then you can add a closed parentheses and decrement c
-    * Once both o and c are 0 then add the current string to the result list of type string.
+
+- Explanation:
+  - Here you need to keep track of one thing, and this is a closed parentheses can only be added to the string if an open one already exists
+  - So to do that we keep track of two variables 'o' and 'c'
+  - Add an open parentheses to the string and decrement o
+  - And if c > o i.e. there are more open parentheses in the current string than closed ones then you can add a closed parentheses and decrement c
+  - Once both o and c are 0 then add the current string to the result list of type string.
+
+#### [Remove all adjacent duplicates in string 2](https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/)
+
+- Explanation:
+  - Use a monotonic stack for it
+  - But not just any monotonic stack, the type of the stack should be int[]
+  - This is to record the occurrence and store the character in int form i.e. ascii value in the stack
+- Example:
+
+  - s = "deeedbbcccbdaa", k = 3
+  - This is what will happen in the code
+
+    1. First we keep adding the characters and their occurrence in the stack
+
+    2. Now if the next 'e' is added then the occurrences of 'e' will be equal to k, therefore we need to pop out 'e' and add the elements after that
+       | i=3 |
+       |:---:|
+       | e 2 |
+       | e 1 |
+       | d 1 |
+
+    3. Now if we add the next 'c' the occurrences of 'c' will be equal k, therefore pop out 'c' and add the next characters
+       | i=9 |
+       |:---:|
+       | c 2 |
+       | c 1 |
+       | b 2 |
+       | b 1 |
+       | d 2 |
+       | d 1 |
+
+    4. Same with 'b'
+       |i=10 |
+       |:---:|
+       | b 2 |
+       | b 1 |
+       | d 2 |
+       | d 1 |
+
+    5. Same with 'd'
+       |i=11 |
+       |:---:|
+       | d 2 |
+       | d 1 |
+
+    6. Now what you are left with is
+       |i=13 |
+       |:---:|
+       | a 2 |
+       | a 1 |
+
+  - This is your answer
+
+#### [Koko eating bananas](https://leetcode.com/problems/koko-eating-bananas/)
+- Explanation
+    - So the brute force way is very simple
+        1. Calculate the max value
+        2. Then run a for loop from 1 to the max value
+        3. In that for loop see with the current value of 'i' the hours it would take to finish the array
+        4. You do that by nesting another loop inside the current loop where you traverse the array
+        5. Now if the hours you have calculated with 'i' is equal to the hours specified in the params then just return 'i', if multiple 'i's give the same number of hours then return the minimum 'i'
+    - Better approach
+        1. Calculate the max value
+        2. Here instead of running a for loop from 1 to max, observe that this is not an array, it's just a range from 1 to max which means it is sorted which intern means that binary search can be used here
+        3. Therefore use binary search for it
+
+
 #### [Partition Labels](https://leetcode.com/problems/partition-labels/)
 
 #### [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
