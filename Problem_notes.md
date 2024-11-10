@@ -150,7 +150,7 @@
     /     \     /
   (2)     (9) (8)
 
-Level order treversal =
+Level order trevarsal =
 [[1],[4,7],[2,9,8]]
 ```
 
@@ -199,7 +199,7 @@ Level order treversal =
             /     \     /
           (2)     (9) (8)
 
-      Level order treversal =
+      Level order traversal =
       [[1],[4,7],[2,9,8]]
 
       Right Side View =
@@ -530,6 +530,77 @@ Level order treversal =
         2. Here instead of running a for loop from 1 to max, observe that this is not an array, it's just a range from 1 to max which means it is sorted which intern means that binary search can be used here
         3. Therefore use binary search for it
 
+#### [Longest consecutive sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
+- Example:
+    - ```java
+        int[] nums = {100,4,200,1,3,2};
+        // res = 4
+        // because the longest consecutive sequence is 1, 2, 3, 4
+        ```
+- Explanation:
+    - They are asking you so solve this in O(n)
+    - So just add the entire array to a hashset named "set"
+    - Now initialize another hashset named "seen"
+    - Now traverse "set" and check if there exists +1 of current element or -1 of current element
+    - If that is the case do a count++ and keep checking until there does not exist a +1 of current element or -1 of current element
+    - Meanwhile keep adding all the elements you've visited in the "seen" set and if the current element is in "seen" continue
+    - Return count
+
+
+#### [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/)
+- Prerequisite:
+    - longest-common-subsequence
+- Explanation:
+    - One of the easier hard problems
+    - So the recursive + memo approach is basically you start with a pointer at both strings
+    - ```java
+        if(s.charAt(i) == t.charAt(j)){
+            dfs(s, t, i + 1, j + 1);
+        }
+        dfs(s, t, i + 1, j);
+        ```
+    - This is basically the recursive part 
+    - The base condition is that if j == t.length() then return true else return false.
+    - The reason for it is that, if you observe we are only incrementing j if we have found that a char at i in s is equal to a char at j in t
+    - The 2 variables to memoize are i and j
+
+#### [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)
+- Explanation:
+    - This is basically BFS on a graph
+    - Here you use a queue
+    - In that queue store the position of all the rotten oranges and also calculate the number of fresh oranges
+    - Now have this condition in you while loop
+    - ```java
+        while(!queue.isEmpty() && fresh > 0)
+        ```
+    - Then record the size of the queue (basically what you do in level order tree traversal)
+    - Then nest another while loop with this condition
+    - ```java
+        while(size > 0)
+        ```
+    - Now pop element from queue
+    - Explore all the directions that are valid and if the orange is fresh make it rotten, decrement fresh and add the position of the orange in the queue, since it in now rotten
+    - Also decrement size at the end of the nested loop
+    - When the nested loop completed increment the res (res here is the time taken to rot all the oranges)
+    - return -1 is fresh is not 0 else return res
+
+#### [Minimum window substring](https://leetcode.com/problems/minimum-window-substring/)
+- Explanation:
+    - What you need to to in this problem is to return a substring in string s which has all the characters in the string t, (in any order)
+    - To solve this first create 2 hashmaps one from string s, let's call it "ms" and one from string t, call it "mt"
+    - Then you record all the occurrences of all the characters in string t
+    - Now you start recording the occurrences for all the characters in string s, but there will be two pointers, since sliding window, l and r
+    - While recording if all the characters in map mt are present in map ms with the same or greater occurrences then you store the left pointer and right pointer in an array
+    - Now nest a loop that checks while the condition is true decrement occurrences from mt at pointer l and increment pointer l
+    - When the nested loop breaks the outer loop resumes and the loop will look for another substring that has all the characters in string t
+    - If the condition is true once more then check if the substring length is less than the current result, else let it go
+    - return s.substring(res[0], res[1])
+
+#### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+
+#### [Task Scheduler](https://leetcode.com/problems/task-scheduler/)
+
+#### [Container with most water](https://leetcode.com/problems/container-with-most-water/)
 
 #### [Partition Labels](https://leetcode.com/problems/partition-labels/)
 
@@ -541,8 +612,6 @@ Level order treversal =
 
 #### [Valid Parenthesis String](https://leetcode.com/problems/gas-station/)
 
-#### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
-
-#### [Subarray with k different intergers](https://leetcode.com/problems/subarrays-with-k-different-integers/)
+#### [Subarray with k different integers](https://leetcode.com/problems/subarrays-with-k-different-integers/)
 
 #### [Flip equivalent binary trees](https://leetcode.com/problems/flip-equivalent-binary-trees/).
