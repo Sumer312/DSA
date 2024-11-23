@@ -596,6 +596,30 @@ Level order trevarsal =
     - If the condition is true once more then check if the substring length is less than the current result, else let it go
     - return s.substring(res[0], res[1])
 
+#### [Majority Element 2](https://leetcode.com/problems/majority-element-ii/)
+- Explanation:
+    - This is one of those questions which tough for the sake of being tough
+    - So basically it is asking us to calculate the elements which occur in an array nums more than ```len(nums) / 3```  times
+    - By definition that means that the result can only be either 1 or 2 elements because we can have at most 2 elements in an array that occur more than ```len(nums) / 3``` times 
+    - Something like this ```[1,1,2,2,3]```, here only 1 and 2 are majority elements because they occur 2 times which is more than 5 / 3.
+    - So to solve this you need a hashmap of length 3
+    - To achieve that we keep filling the hashmap until the size reaches the size 3
+    - When is does traverse the hashmap and decrement the elements by 1, and if the occurrence reaches 0 then remove the element
+    - By the end what you are left with in the hashmap are 1 or 2 majority elements of the array
+    - But hold on, this only works for like ~70% of the time
+    - Because for the array like this ```[1,2,3,4,5,6,7,8]``` it return 7 and 8, which is not the answer
+    - Or for the array ```[1,2,1,2,1,2,4,5,6]``` it returns 5 and 6, which is not the answer
+    - So after the loop ends do something like this
+    - ```java
+        for(int i : nums){
+            if(verify(nums, i)){
+                res.add(i);
+            }
+        }
+        return res;
+        ```
+    - Where the method verify is checking if the element actually has more than ```len(nums) / 3``` occurrences or not
+
 #### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
 
 #### [Task Scheduler](https://leetcode.com/problems/task-scheduler/)
