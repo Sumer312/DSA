@@ -622,6 +622,9 @@ Level order trevarsal =
         ```
     - Where the method verify is checking if the element actually has more than ```len(nums) / 3``` occurrences or not
 
+#### [Find k closest elements](https://leetcode.com/problems/find-k-closest-elements/)
+- Your initial solution for this was absolute ass
+
 #### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
 
 #### [Task Scheduler](https://leetcode.com/problems/task-scheduler/)
