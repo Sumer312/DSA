@@ -47,3 +47,4 @@
     - Union find
     - Backtracking
     - Prefix sum
+    - Quick select
