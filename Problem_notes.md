@@ -611,6 +611,8 @@ Level order trevarsal =
     - Or for the array ```[1,2,1,2,1,2,4,5,6]``` it returns 5 and 6, which is not the answer
     - So after the loop ends do something like this
     - ```java
+        List<Integer> res = new LinkedList();
+        /* the code described above */
         for(int i : nums){
             if(verify(nums, i)){
                 res.add(i);
