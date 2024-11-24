@@ -518,111 +518,150 @@ Level order trevarsal =
   - This is your answer
 
 #### [Koko eating bananas](https://leetcode.com/problems/koko-eating-bananas/)
+
 - Explanation
-    - So the brute force way is very simple
-        1. Calculate the max value
-        2. Then run a for loop from 1 to the max value
-        3. In that for loop see with the current value of 'i' the hours it would take to finish the array
-        4. You do that by nesting another loop inside the current loop where you traverse the array
-        5. Now if the hours you have calculated with 'i' is equal to the hours specified in the params then just return 'i', if multiple 'i's give the same number of hours then return the minimum 'i'
-    - Better approach
-        1. Calculate the max value
-        2. Here instead of running a for loop from 1 to max, observe that this is not an array, it's just a range from 1 to max which means it is sorted which intern means that binary search can be used here
-        3. Therefore use binary search for it
+  - So the brute force way is very simple
+    1. Calculate the max value
+    2. Then run a for loop from 1 to the max value
+    3. In that for loop see with the current value of 'i' the hours it would take to finish the array
+    4. You do that by nesting another loop inside the current loop where you traverse the array
+    5. Now if the hours you have calculated with 'i' is equal to the hours specified in the params then just return 'i', if multiple 'i's give the same number of hours then return the minimum 'i'
+  - Better approach
+    1. Calculate the max value
+    2. Here instead of running a for loop from 1 to max, observe that this is not an array, it's just a range from 1 to max which means it is sorted which intern means that binary search can be used here
+    3. Therefore use binary search for it
 
 #### [Longest consecutive sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
-- Example:
-    - ```java
-        int[] nums = {100,4,200,1,3,2};
-        // res = 4
-        // because the longest consecutive sequence is 1, 2, 3, 4
-        ```
-- Explanation:
-    - They are asking you so solve this in O(n)
-    - So just add the entire array to a hashset named "set"
-    - Now initialize another hashset named "seen"
-    - Now traverse "set" and check if there exists +1 of current element or -1 of current element
-    - If that is the case do a count++ and keep checking until there does not exist a +1 of current element or -1 of current element
-    - Meanwhile keep adding all the elements you've visited in the "seen" set and if the current element is in "seen" continue
-    - Return count
 
+- Example:
+  - ```java
+      int[] nums = {100,4,200,1,3,2};
+      // res = 4
+      // because the longest consecutive sequence is 1, 2, 3, 4
+    ```
+- Explanation:
+  - They are asking you so solve this in O(n)
+  - So just add the entire array to a hashset named "set"
+  - Now initialize another hashset named "seen"
+  - Now traverse "set" and check if there exists +1 of current element or -1 of current element
+  - If that is the case do a count++ and keep checking until there does not exist a +1 of current element or -1 of current element
+  - Meanwhile keep adding all the elements you've visited in the "seen" set and if the current element is in "seen" continue
+  - Return count
 
 #### [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/)
+
 - Prerequisite:
-    - longest-common-subsequence
+  - longest-common-subsequence
 - Explanation:
-    - One of the easier hard problems
-    - So the recursive + memo approach is basically you start with a pointer at both strings
-    - ```java
-        if(s.charAt(i) == t.charAt(j)){
-            dfs(s, t, i + 1, j + 1);
-        }
-        dfs(s, t, i + 1, j);
-        ```
-    - This is basically the recursive part 
-    - The base condition is that if j == t.length() then return true else return false.
-    - The reason for it is that, if you observe we are only incrementing j if we have found that a char at i in s is equal to a char at j in t
-    - The 2 variables to memoize are i and j
+  - One of the easier hard problems
+  - So the recursive + memo approach is basically you start with a pointer at both strings
+  - ```java
+      if(s.charAt(i) == t.charAt(j)){
+          dfs(s, t, i + 1, j + 1);
+      }
+      dfs(s, t, i + 1, j);
+    ```
+  - This is basically the recursive part
+  - The base condition is that if j == t.length() then return true else return false.
+  - The reason for it is that, if you observe we are only incrementing j if we have found that a char at i in s is equal to a char at j in t
+  - The 2 variables to memoize are i and j
 
 #### [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)
+
 - Explanation:
-    - This is basically BFS on a graph
-    - Here you use a queue
-    - In that queue store the position of all the rotten oranges and also calculate the number of fresh oranges
-    - Now have this condition in you while loop
-    - ```java
-        while(!queue.isEmpty() && fresh > 0)
-        ```
-    - Then record the size of the queue (basically what you do in level order tree traversal)
-    - Then nest another while loop with this condition
-    - ```java
-        while(size > 0)
-        ```
-    - Now pop element from queue
-    - Explore all the directions that are valid and if the orange is fresh make it rotten, decrement fresh and add the position of the orange in the queue, since it in now rotten
-    - Also decrement size at the end of the nested loop
-    - When the nested loop completed increment the res (res here is the time taken to rot all the oranges)
-    - return -1 is fresh is not 0 else return res
+  - This is basically BFS on a graph
+  - Here you use a queue
+  - In that queue store the position of all the rotten oranges and also calculate the number of fresh oranges
+  - Now have this condition in you while loop
+  - ```java
+      while(!queue.isEmpty() && fresh > 0)
+    ```
+  - Then record the size of the queue (basically what you do in level order tree traversal)
+  - Then nest another while loop with this condition
+  - ```java
+      while(size > 0)
+    ```
+  - Now pop element from queue
+  - Explore all the directions that are valid and if the orange is fresh make it rotten, decrement fresh and add the position of the orange in the queue, since it in now rotten
+  - Also decrement size at the end of the nested loop
+  - When the nested loop completed increment the res (res here is the time taken to rot all the oranges)
+  - return -1 is fresh is not 0 else return res
 
 #### [Minimum window substring](https://leetcode.com/problems/minimum-window-substring/)
+
 - Explanation:
-    - What you need to to in this problem is to return a substring in string s which has all the characters in the string t, (in any order)
-    - To solve this first create 2 hashmaps one from string s, let's call it "ms" and one from string t, call it "mt"
-    - Then you record all the occurrences of all the characters in string t
-    - Now you start recording the occurrences for all the characters in string s, but there will be two pointers, since sliding window, l and r
-    - While recording if all the characters in map mt are present in map ms with the same or greater occurrences then you store the left pointer and right pointer in an array
-    - Now nest a loop that checks while the condition is true decrement occurrences from mt at pointer l and increment pointer l
-    - When the nested loop breaks the outer loop resumes and the loop will look for another substring that has all the characters in string t
-    - If the condition is true once more then check if the substring length is less than the current result, else let it go
-    - return s.substring(res[0], res[1])
+  - What you need to to in this problem is to return a substring in string s which has all the characters in the string t, (in any order)
+  - To solve this first create 2 hashmaps one from string s, let's call it "ms" and one from string t, call it "mt"
+  - Then you record all the occurrences of all the characters in string t
+  - Now you start recording the occurrences for all the characters in string s, but there will be two pointers, since sliding window, l and r
+  - While recording if all the characters in map mt are present in map ms with the same or greater occurrences then you store the left pointer and right pointer in an array
+  - Now nest a loop that checks while the condition is true decrement occurrences from mt at pointer l and increment pointer l
+  - When the nested loop breaks the outer loop resumes and the loop will look for another substring that has all the characters in string t
+  - If the condition is true once more then check if the substring length is less than the current result, else let it go
+  - return s.substring(res[0], res[1])
 
 #### [Majority Element 2](https://leetcode.com/problems/majority-element-ii/)
+
 - Explanation:
-    - This is one of those questions which tough for the sake of being tough
-    - So basically it is asking us to calculate the elements which occur in an array nums more than ```len(nums) / 3```  times
-    - By definition that means that the result can only be either 1 or 2 elements because we can have at most 2 elements in an array that occur more than ```len(nums) / 3``` times 
-    - Something like this ```[1,1,2,2,3]```, here only 1 and 2 are majority elements because they occur 2 times which is more than 5 / 3.
-    - So to solve this you need a hashmap of length 3
-    - To achieve that we keep filling the hashmap until the size reaches the size 3
-    - When is does traverse the hashmap and decrement the elements by 1, and if the occurrence reaches 0 then remove the element
-    - By the end what you are left with in the hashmap are 1 or 2 majority elements of the array
-    - But hold on, this only works for like ~70% of the time
-    - Because for the array like this ```[1,2,3,4,5,6,7,8]``` it return 7 and 8, which is not the answer
-    - Or for the array ```[1,2,1,2,1,2,4,5,6]``` it returns 5 and 6, which is not the answer
-    - So after the loop ends do something like this
-    - ```java
-        List<Integer> res = new LinkedList();
-        /* the code described above */
-        for(int i : nums){
-            if(verify(nums, i)){
-                res.add(i);
-            }
-        }
-        return res;
-        ```
-    - Where the method verify is checking if the element actually has more than ```len(nums) / 3``` occurrences or not
+  - This is one of those questions which tough for the sake of being tough
+  - So basically it is asking us to calculate the elements which occur in an array nums more than `len(nums) / 3` times
+  - By definition that means that the result can only be either 1 or 2 elements because we can have at most 2 elements in an array that occur more than `len(nums) / 3` times
+  - Something like this `[1,1,2,2,3]`, here only 1 and 2 are majority elements because they occur 2 times which is more than 5 / 3.
+  - So to solve this you need a hashmap of length 3
+  - To achieve that we keep filling the hashmap until the size reaches the size 3
+  - When is does traverse the hashmap and decrement the elements by 1, and if the occurrence reaches 0 then remove the element
+  - By the end what you are left with in the hashmap are 1 or 2 majority elements of the array
+  - But hold on, this only works for like ~70% of the time
+  - Because for the array like this `[1,2,3,4,5,6,7,8]` it return 7 and 8, which is not the answer
+  - Or for the array `[1,2,1,2,1,2,4,5,6]` it returns 5 and 6, which is not the answer
+  - So after the loop ends do something like this
+  - ```java
+      List<Integer> res = new LinkedList();
+      /* the code described above */
+      for(int i : nums){
+          if(verify(nums, i)){
+              res.add(i);
+          }
+      }
+      return res;
+    ```
+  - Where the method verify is checking if the element actually has more than `len(nums) / 3` occurrences or not
+
+#### [Sort characters by frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
+
+- Explanation:
+    - The heap approach is very simple but is is O(nlogn) because sorting
+    - The better approach is bucket sort
+
+#### [Find all duplicates in an array](https://leetcode.com/problems/find-all-duplicates-in-an-array/)
+
+- Explanation
+    - This is a very unique problem
+    - Here you can use a set and all but to solve this in O(1) space there is a trick
+    - The questions mentions that all the elements in the array are in the range [1, len(arr)]
+    - So with that information what you can do is use the initial array as a hashset
+    - Basically if the current element is 2, then arr[2] should be made negative
+    - So that if 2 occurs again in the array we can to to arr[2] and see that the value is already negative that implies that 2 already is present in the array
+    - But this only works if the occurrence of the duplicate character is not more that 2
+    - This technique will also be used in the problem first missing positive
+- Example
+```java
+int[] arr = {1, 4, 3, 3, 2};
+// start traversing the array and start making the value -ve
+
+// arr[1 - 1] is 1, so this is what we do
+arr[1 - 1] = -1
+// arr[4 - 1] is 2, so this is what we do
+arr[4 - 1] = -3
+// arr[3 - 1] is 3, so this is what we do
+arr[3 - 1] = -3
+// arr[3 - 1] is -3, that means 3 has already occurred in the array
+```
+
+#### [First-Missing-Positive](https://leetcode.com/problems/first-missing-positive/)
 
 #### [Find k closest elements](https://leetcode.com/problems/find-k-closest-elements/)
+
 - Your initial solution for this was absolute ass
 
 #### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
@@ -634,8 +673,6 @@ Level order trevarsal =
 #### [Partition Labels](https://leetcode.com/problems/partition-labels/)
 
 #### [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
-
-#### [First-Missing-Positive](https://leetcode.com/problems/first-missing-positive/)
 
 #### [Gas Station](https://leetcode.com/problems/gas-station/)
 
