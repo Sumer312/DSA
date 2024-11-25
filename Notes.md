@@ -134,10 +134,6 @@ for(int i = 0; i < count.length; i++){
 - So if we traverse from the back we can sort from the most frequent and if we traverse from the front we can sort based on the least frequent
 - The time complexity of the algorithm is O(n)
 
-### Heap sort
-
-- Just sort using a heap
-
 ### Topological Sort
 
 - This algorithm sorts a graph on the basis of some criteria
