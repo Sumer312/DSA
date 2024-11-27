@@ -348,7 +348,7 @@ Level order trevarsal =
   String s2 = "tea";
   ```
   dict string of s1 = "10001000000000000001000000"\
-   dict string of s2 = "10001000000000000001000000"
+  dict string of s2 = "10001000000000000001000000"
 
 #### [Hand of Straights](https://leetcode.com/problems/hand-of-straights/)
 
