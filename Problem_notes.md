@@ -682,6 +682,43 @@ arr[3 - 1] = -3
     - Increment res
   - Once r reaches the last element the loop will break and res will be returned
 
+#### [Serialize and deserialize binary-tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
+
+- Explanation
+
+  - One of the easier hard problems, here you need good knowledge about how trees are represented in the form of string and also about doing DFS on trees
+  - This problem can be solved using BFS as well, but here we will be using the DFS approach
+  - So in the serialize method do a regular DFS on the tree and convert it in a string as you go, but keep this points in minimum-window-substring
+
+    - When the root becomes null then add "n" or something else to the string, don't leave it blank
+    - Separate all the nodes with a delimiter like a comma (,)
+
+  - So a tree like this
+
+  ```
+    1
+  /   \
+       3
+      /  \
+     2
+  ```
+
+  - becomes this,
+
+  ```java
+      String str = "1,n,3,2,n,n,n"
+  ```
+
+  - Now to deserialize what we do is initialize a pointer at the start of the array named idx
+    - Create new node root and set to the value (int)str.charAt(idx)
+    - Increment idx
+    - root.left = recursive call
+    - Increment idx
+    - root.right = recursive call
+    - When str.charAt(idx) == 'n' then return null
+    - There is also one more way we can do this, instead on incrementing idx after the root.left recursive call we increment inside the base condition where str.charAt(idx) == 'n' is checked, this was in neetcode video but you can just increment after the root.left recursive call as well
+      -BTW here I have represented the serialized data as string but when you deserialize it do convert it to a string array where you split by ",", makes the process a whole lot easier
+
 #### [Find k closest elements](https://leetcode.com/problems/find-k-closest-elements/)
 
 - Your initial solution for this was absolute ass
