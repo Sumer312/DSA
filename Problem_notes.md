@@ -717,7 +717,7 @@ arr[3 - 1] = -3
     - root.right = recursive call
     - When str.charAt(idx) == 'n' then return null
     - There is also one more way we can do this, instead on incrementing idx after the root.left recursive call we increment inside the base condition where str.charAt(idx) == 'n' is checked, this was in neetcode video but you can just increment after the root.left recursive call as well
-      -BTW here I have represented the serialized data as string but when you deserialize it do convert it to a string array where you split by ",", makes the process a whole lot easier
+    - BTW here I have represented the serialized data as string but when you deserialize it do convert it to a string array where you split by ",", makes the process a whole lot easier
 
 #### [Find k closest elements](https://leetcode.com/problems/find-k-closest-elements/)
 
