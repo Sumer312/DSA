@@ -630,21 +630,22 @@ Level order trevarsal =
 #### [Sort characters by frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
 
 - Explanation:
-    - The heap approach is very simple but is is O(nlogn) because sorting
-    - The better approach is bucket sort
+  - The heap approach is very simple but is is O(nlogn) because sorting
+  - The better approach is bucket sort
 
 #### [Find all duplicates in an array](https://leetcode.com/problems/find-all-duplicates-in-an-array/)
 
 - Explanation
-    - This is a very unique problem
-    - Here you can use a set and all but to solve this in O(1) space there is a trick
-    - The questions mentions that all the elements in the array are in the range [1, len(arr)]
-    - So with that information what you can do is use the initial array as a hashset
-    - Basically if the current element is 2, then arr[2] should be made negative
-    - So that if 2 occurs again in the array we can to to arr[2] and see that the value is already negative that implies that 2 already is present in the array
-    - But this only works if the occurrence of the duplicate character is not more that 2
-    - This technique will also be used in the problem first missing positive
+  - This is a very unique problem
+  - Here you can use a set and all but to solve this in O(1) space there is a trick
+  - The questions mentions that all the elements in the array are in the range [1, len(arr)]
+  - So with that information what you can do is use the initial array as a hashset
+  - Basically if the current element is 2, then arr[2] should be made negative
+  - So that if 2 occurs again in the array we can to to arr[2] and see that the value is already negative that implies that 2 already is present in the array
+  - But this only works if the occurrence of the duplicate character is not more that 2
+  - This technique will also be used in the problem first missing positive
 - Example
+
 ```java
 int[] arr = {1, 4, 3, 3, 2};
 // start traversing the array and start making the value -ve
@@ -658,11 +659,34 @@ arr[3 - 1] = -3
 // arr[3 - 1] is -3, that means 3 has already occurred in the array
 ```
 
-#### [First-Missing-Positive](https://leetcode.com/problems/first-missing-positive/)
+#### [Jump Game 2](https://leetcode.com/problems/jump-game-ii/)
+
+- Prerequisite: Jump game
+- Given in the question that all the elements are able to reach the ending element
+- Explanation
+  - So to solve this what you need to do is you need to visualize the entire array as buckets
+  ```java
+      [2, 3, 1, 1, 4]
+      // so here the starting element will be in one bucket
+      // no we can jump at idx 1, or 2 because the max we can jump is 2
+      // so that implies that the next bucket will be 3 and 1
+      // following the same pattern we we conclude that there are 3 buckets, 2 | 3, 1 | 1, 4
+  ```
+  - Now in the above example we have 3 buckets
+  - So we initialize 2 pointers, l and r, and one more pointer res which represents the min number of jumps i.e. the return value of our function
+  - l will be at the start of the bucket and r will go till the idx where the current value allows to jump to
+  - lets set the farthest idx the current values allows to jump to to a variable named farthest
+  - Once variable r reaches the farthest value
+    - Set l to r + 1
+    - Set r to farthest variable
+    - Increment res
+  - Once r reaches the last element the loop will break and res will be returned
 
 #### [Find k closest elements](https://leetcode.com/problems/find-k-closest-elements/)
 
 - Your initial solution for this was absolute ass
+
+#### [First-Missing-Positive](https://leetcode.com/problems/first-missing-positive/)
 
 #### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
 
@@ -681,3 +705,7 @@ arr[3 - 1] = -3
 #### [Subarray with k different integers](https://leetcode.com/problems/subarrays-with-k-different-integers/)
 
 #### [Flip equivalent binary trees](https://leetcode.com/problems/flip-equivalent-binary-trees/).
+
+#### [Coin change 2](https://leetcode.com/problems/flip-equivalent-binary-trees/).
+
+#### [Longest increasing subsequence](https://leetcode.com/problems/longest-common-subsequence/)
