@@ -719,31 +719,33 @@ arr[3 - 1] = -3
     - There is also one more way we can do this, instead on incrementing idx after the root.left recursive call we increment inside the base condition where str.charAt(idx) == 'n' is checked, this was in neetcode video but you can just increment after the root.left recursive call as well
     - BTW here I have represented the serialized data as string but when you deserialize it do convert it to a string array where you split by ",", makes the process a whole lot easier
 
-#### [Insert Intervals](https://leetcode.com/problems/insert-interval)
+#### [Merge Intervals](https://leetcode.com/problems/merge-intervals/)
 
+- FYI: This is the exact same method used to solve the problem [Insert Intervals](https://leetcode.com/problems/insert-interval)
 - Explanation
-    - So in this problem you need to visualize the intervals in a number line, like
-    ```java
-        int[][] interval = [[1, 3], [2, 6], [0, 5]];
-        // number line visualization 
-        //             0 1 2 3 4 5 6 
-        // interval[0]   |---| 
-        // interval[1]     |-------|
-        // interval[2] |--------|
-    ```
-    - As you can see, using this visualization it is more helpful for us to understand overlapping intervals
-    - So to solve this problem we will sort the intervals array on the basis of the first element in the interval, (like using a heap)
-    - Here I am following the heap method
-    - Then have 2 variables of type ```int[]``` prev and cur
-    - Then we start popping the elements from heap
-    - If the current interval is overlapping with the previous interval, then we update the end value of the previous element
-    - If the current element does not overlap the previous element the add prev to a list and set prev to cur, (prev = cur)
-    - When the loop ends add prev again to list, this is because notice we are only adding prev to the list and not cur, i.e. there will be one interval left after the loop ends
-    - So for the example above it will look something like this
-        - ```[0, 5]``` is polled
-        - ```[1, 3]``` is polled, it overlaps with the prev interval so the new prev = ```[0, max(5, 3)]``` = ```[0, 5]```
-        - ```[2, 6]``` is polled and it overlaps with the prev interval which is ```[0, 5]```, therefore we update the prev to ```[0, max(5, 6)]```
-    - Therefore result list contains the interval ```[0, 6]```
+  - So in this problem you need to visualize the intervals in a number line, like
+  ```java
+      int[][] interval = [[1, 3], [2, 6], [0, 5]];
+      // number line visualization
+      //             0 1 2 3 4 5 6
+      // interval[0]   |---|
+      // interval[1]     |-------|
+      // interval[2] |--------|
+  ```
+  - As you can see, using this visualization it is more helpful for us to understand overlapping intervals
+  - So to solve this problem we will sort the intervals array on the basis of the first element in the interval, (like using a heap)
+  - Here I am following the heap method
+  - Then have 2 variables of type `int[]` prev and cur
+  - Then we start popping the elements from heap
+  - If the current interval is overlapping with the previous interval, then we update the end value of the previous element
+  - If the current element does not overlap the previous element the add prev to a list and set prev to cur, (prev = cur)
+  - When the loop ends add prev again to list, this is because notice we are only adding prev to the list and not cur, i.e. there will be one interval left after the loop ends
+  - So for the example above it will look something like this
+    - `[0, 5]` is polled
+    - `[1, 3]` is polled, it overlaps with the prev interval so the new prev = `[0, max(5, 3)]` = `[0, 5]`
+    - `[2, 6]` is polled and it overlaps with the prev interval which is `[0, 5]`, therefore we update the prev to `[0, max(5, 6)]`
+  - Therefore result list contains the interval `[0, 6]`
+
 #### [Find k closest elements](https://leetcode.com/problems/find-k-closest-elements/)
 
 - Your initial solution for this was absolute ass
