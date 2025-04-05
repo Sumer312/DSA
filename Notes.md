@@ -121,16 +121,18 @@ for(int i = 0; i < count.length; i++){
 ### Bucket sort
 
 - This is mostly gonna be used to sort the array based on the frequency of the element
-- Let's say you want to sort this array by frequency ```[1, 2, 2, 4, 4, 3, 3, 3, 3]```
-- The result should be ```[3, 3, 3, 3, 4, 4, 2, 2, 1]```
+- Let's say you want to sort this array by frequency `[1, 2, 2, 4, 4, 3, 3, 3, 3]`
+- The result should be `[3, 3, 3, 3, 4, 4, 2, 2, 1]`
 - So to solve this using bucket sort what we do is we create a new array.
 - And in that array at index 1 we add 1, because 1 has a frequency of 1;
 - In the index 2 we add 2 and 4, because both the elements have frequencies of 2 and so on
 - So this is what our bucket array will look like
+
 ```
 [0,  1,    2,    3,  4] //indices
 [-, [1], [2, 4], -, [3]] //values
 ```
+
 - So if we traverse from the back we can sort from the most frequent and if we traverse from the front we can sort based on the least frequent
 - The time complexity of the algorithm is O(n)
 
