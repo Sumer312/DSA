@@ -1,8 +1,8 @@
 # Neetcode 150
 ##### This md doc contains the problems that I found very insightful in the [neetcode 150 list](https://neetcode.io/practice?tab=neetcode150). Neetcode 250 is the extension of neetcode 150, i.e. the overlapping problems in both lists which were very important are in the Neetcode150 doc.
 
-- [Edit Distance](edit-distance)
-- [Last Stone Weight](last-stone-weight)
+- [Edit Distance](#edit-distance)
+- [Last Stone Weight](#last-stone-weight)
 - [Distinct Subsequences](#distinct-subsequences)
 - [Rotting Oranges](#rotting-oranges)
 - [Koko eating bananas](#koko-eating-bananas)
