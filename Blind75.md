@@ -1,4 +1,5 @@
 # Blind 75
+
 ##### This md doc contains the problems that I found very insightful in the [blind 75 list](https://neetcode.io/practice?tab=blind75)
 
 - [Longest common subsequence](#longest-common-subsequence)
