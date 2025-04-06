@@ -19,7 +19,12 @@
 - [3Sum](#3sum)
 - [Product of array except self](#product-of-array-except-self)
 - [House Robber](#house-robber)
-- [Top k frequent elements](#house-robber)
+- [Top k frequent elements](#top-k-frequent-elements)
+- [Container with most water](#container-with-most-water)
+- [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+- [Longest increasing subsequence](#longest-increasing-subsequence)
+- [Kth smallest element in BST]()
+- [Lowest common ancestor of a BST]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 

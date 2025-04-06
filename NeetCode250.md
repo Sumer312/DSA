@@ -1,6 +1,6 @@
 # Neetcode 250
 
-##### This md doc contains the problems that I found very insightful in the [neetcode 250 list](https://neetcode.io/practice?tab=neetcode250). Neetcode 150 is the extension of blind 75, i.e. the overlapping problems in both lists which were very important are in the Blind75 doc.
+##### This md doc contains the problems that I found very insightful in the [neetcode 250 list](https://neetcode.io/practice?tab=neetcode250). Neetcode 250 is the extension of neetcode 150, i.e. the overlapping problems in both lists which were very important are in the Neetcode150 doc.
 
 - [Maximum sum circular subarray](#maximum-sum-circular-subarray)
 - [Majority Element 2](#majority-element-2)

@@ -1,5 +1,6 @@
 # Neetcode 150
-##### This md doc contains the problems that I found very insightful in the [neetcode 150 list](https://neetcode.io/practice?tab=neetcode150). Neetcode 250 is the extension of neetcode 150, i.e. the overlapping problems in both lists which were very important are in the Neetcode150 doc.
+
+##### This md doc contains the problems that I found very insightful in the [neetcode 150 list](https://neetcode.io/practice?tab=neetcode150). Neetcode 150 is the extension of blind 75, i.e. the overlapping problems in both lists which were very important are in the Blind75 doc.
 
 - [Edit Distance](#edit-distance)
 - [Last Stone Weight](#last-stone-weight)
@@ -12,8 +13,16 @@
 - [Permutations](#permutations)
 - [Generate parentheses](#generate-parentheses)
 - [Jump Game 2](#jump-game-2)
-- [Find Median From Data Stream]()
+- [Trapping Rain Water](#trapping-rain-water)
 - [Sliding Window Maximum]()
+- [Find Median From Data Stream]()
+- [Task Scheduler]()
+- [Gas Station]()
+- [Partition Labels]()
+- [Coin change 2]()
+- [Valid Parenthesis String]()
+- [First-Missing-Positive]()
+- [Reverse Integer]()
 
 #### [Edit Distance](https://leetcode.com/problems/edit-distance/)
 
@@ -193,4 +202,3 @@
   - Add an open parentheses to the string and decrement o
   - And if c > o i.e. there are more open parentheses in the current string than closed ones then you can add a closed parentheses and decrement c
   - Once both o and c are 0 then add the current string to the result list of type string.
-

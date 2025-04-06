@@ -1,4 +1,5 @@
 # Extra problems
+
 ##### These are some extra problems that are not in any list per say but are very helpful
 
 - [Longest palindromic subsequence](longest-palindromic-subsequence)
@@ -8,6 +9,20 @@
 - [Remove all adjacent duplicates in string 2](#remove-all-adjacent-duplicates-in-string-2)
 - [Sort characters by frequency](#sort-characters-by-frequency)
 - [Find all duplicates in an array](#find-all-duplicates-in-an-array)
+- [Subarray with k different integers]()
+- [Flip equivalent binary trees]()
+- [Remove duplicate letters]()
+- [Continuous Subarray Sum]()
+- [Maximum operations to reduce X to zero]()
+- [Rotate array]()
+- [Integer to roman]()
+- [Determine if two strings are close]()
+- [Increasing triplet subsequence]()
+- [Path Sum 3]()
+- [Remove all adjacent duplicates in string 2]()
+- [Find peak element]()
+- [Count vowel strings in ranges]()
+<!-- - [Remove all adjacent duplicates in string 1]() -->
 
 #### [Longest palindromic subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/)
 
@@ -23,7 +38,6 @@
 - The answer is 4
 - Explanation:
   - Same as the above question except the second string is just the first string reversed here
-
 
 #### [Minimum Suffix Flips](https://leetcode.com/problems/minimum-suffix-flips/)
 
@@ -192,27 +206,3 @@ arr[4 - 1] = -3
 arr[3 - 1] = -3
 // arr[3 - 1] is -3, that means 3 has already occurred in the array
 ```
-
-#### [First-Missing-Positive](https://leetcode.com/problems/first-missing-positive/)
-
-#### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
-
-#### [Task Scheduler](https://leetcode.com/problems/task-scheduler/)
-
-#### [Container with most water](https://leetcode.com/problems/container-with-most-water/)
-
-#### [Partition Labels](https://leetcode.com/problems/partition-labels/)
-
-#### [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
-
-#### [Gas Station](https://leetcode.com/problems/gas-station/)
-
-#### [Valid Parenthesis String](https://leetcode.com/problems/gas-station/)
-
-#### [Subarray with k different integers](https://leetcode.com/problems/subarrays-with-k-different-integers/)
-
-#### [Flip equivalent binary trees](https://leetcode.com/problems/flip-equivalent-binary-trees/).
-
-#### [Coin change 2](https://leetcode.com/problems/flip-equivalent-binary-trees/).
-
-#### [Longest increasing subsequence](https://leetcode.com/problems/longest-common-subsequence/)
