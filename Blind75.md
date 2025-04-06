@@ -2,29 +2,29 @@
 
 ##### This md doc contains the problems that I found very insightful in the [blind 75 list](https://neetcode.io/practice?tab=blind75)
 
-- [Longest common subsequence](#longest-common-subsequence)
-- [Jump Game](#jump-game)
-- [Merge Intervals](#merge-intervals)
-- [Group Anagrams](#group-anagrams)
-- [Course Schedule](#course-schedule)
-- [Minimum window substring](#minimum-window-substring)
-- [Serialize and deserialize binary-tree](#serialize-and-deserialize-binary-tree)
-- [Reorder List](#reorder-list)
-- [Binary Level Order Traversal](#binary-level-order-traversal)
-- [Rotate Image](#rotate-image)
-- [Decode Ways](#decode-ways)
-- [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
-- [Validate Binary Search Tree](#validate-binary-search-tree)
-- [Longest consecutive sequence](#longest-consecutive-sequence)
-- [3Sum](#3sum)
-- [Product of array except self](#product-of-array-except-self)
-- [House Robber](#house-robber)
-- [Top k frequent elements](#top-k-frequent-elements)
-- [Container with most water](#container-with-most-water)
-- [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
-- [Longest increasing subsequence](#longest-increasing-subsequence)
-- [Kth smallest element in BST]()
-- [Lowest common ancestor of a BST]()
+1. [Longest common subsequence](#longest-common-subsequence)
+2. [Jump Game](#jump-game)
+3. [Merge Intervals](#merge-intervals)
+4. [Group Anagrams](#group-anagrams)
+5. [Course Schedule](#course-schedule)
+6. [Minimum window substring](#minimum-window-substring)
+7. [Serialize and deserialize binary-tree](#serialize-and-deserialize-binary-tree)
+8. [Reorder List](#reorder-list)
+9. [Binary Level Order Traversal](#binary-level-order-traversal)
+10. [Rotate Image](#rotate-image)
+11. [Decode Ways](#decode-ways)
+12. [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
+13. [Validate Binary Search Tree](#validate-binary-search-tree)
+14. [Longest consecutive sequence](#longest-consecutive-sequence)
+15. [3Sum](#3sum)
+16. [Product of array except self](#product-of-array-except-self)
+17. [House Robber](#house-robber)
+18. [Top k frequent elements](#top-k-frequent-elements)
+19. [Container with most water](#container-with-most-water)
+20. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+21. [Longest increasing subsequence](#longest-increasing-subsequence)
+22. [Kth smallest element in BST]()
+23. [Lowest common ancestor of a BST]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -346,3 +346,18 @@ Level order trevarsal =
   - If that is the case do a count++ and keep checking until there does not exist a +1 of current element or -1 of current element
   - Meanwhile keep adding all the elements you've visited in the "seen" set and if the current element is in "seen" continue
   - Return count
+
+#### [3Sum](https://leetcode.com/problems/3sum/)
+
+- Prerequisites: [Two sum 2](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+- Explanation:
+  - So basically here we sort the input array
+  - Then we run a loop from 0 to the second last element of the array (I'll explain why till the second last element)
+  - Now we initialize two pointers j = i + 1 and k = nums.length - 1
+  - Now for the sum of all three numbers to be zero `(nums[i], nums[j], nums[k])`, sum of two elements should be equal to the negative of the third element
+  - Check if the sum of `nums[j] + nums[k]` is equal to `-1 * nums[i]`, if it is then add it to the list and move the two pointers in their respective directions, the reason why we are not breaking here is because there might me more elements whose sum might be equal to `-1 * nums[i]`, for example let's take this array `[2, 3, 0, -3, -2]`, here you have to move the pointers in their respective directions because if you don't do that then the result will be `[0, 2, -2]`, which is wrong.
+  - If `sum > -1 * nums[i]` then k-- else j++
+  - Instead of using a `List<List<Integer>>`, use a `HashSet<List<Integer>`, because you will encounter duplicates if you use the first type to store the answers
+  - Then convert that hashset to list and return the list
+
+#### [Product of array except self](#product-of-array-except-self)
