@@ -357,7 +357,50 @@ Level order trevarsal =
   - Now for the sum of all three numbers to be zero `(nums[i], nums[j], nums[k])`, sum of two elements should be equal to the negative of the third element
   - Check if the sum of `nums[j] + nums[k]` is equal to `-1 * nums[i]`, if it is then add it to the list and move the two pointers in their respective directions, the reason why we are not breaking here is because there might me more elements whose sum might be equal to `-1 * nums[i]`, for example let's take this array `[2, 3, 0, -3, -2]`, here you have to move the pointers in their respective directions because if you don't do that then the result will be `[0, 2, -2]`, which is wrong.
   - If `sum > -1 * nums[i]` then k-- else j++
+  - Now why the outer loop runs from 0 to the second last element is because k is starting at the last element, therefore when i = nums.length - 1 and k = nums.length - 1, it will lead to one element being taken twice. But by only making it run till the second last element and initializing j to i + 1, we are making sure that neither j nor k will be equal to i, this is because j will never be equal to i since it starts at i + 1, and the condition inside the inner while loop is `j < k`, i.e. before k could reach i the inner loop will terminate.
   - Instead of using a `List<List<Integer>>`, use a `HashSet<List<Integer>`, because you will encounter duplicates if you use the first type to store the answers
   - Then convert that hashset to list and return the list
 
-#### [Product of array except self](#product-of-array-except-self)
+#### [Product of array except self](https://leetcode.com/problems/product-of-array-except-self/)
+
+- Example:
+  - ```java
+      int[] nums = {2, 3, 4};
+    ```
+- Explanation:
+  - It's can be a little tricky to understand but bear with it, let is sink in properly
+  - So to solve this without dividing by zero you can declare 2 arrays named left and right with length nums.length + 1
+  - Array left will contain the cumulative product of the array starting from the left
+  - Array right will contain the cumulative product of the array starting from the right
+  - In array left the element at index 0 is set to 1 and in array right the element the last index is set to 1, because to calculate the cumulative product we must multiply the current element in nums array with the previous element in either the left or right array, depending on which side you are traversing.
+  - Considering the above example we get
+    ```java
+        int[] left = new int[nums.length + 1];
+        int[] left = new int[nums.length + 1];
+        // ... calculating the cumulative product
+        // left = [1, 2, 6, 24]
+        // right = [24, 12, 4, 1]
+    ```
+    - Now declare another result array of size nums.length and to fill that array with the product of array except self element just run a loop from 0 to (i < nums.length) and do this
+    ```java
+        res[i] = left[i] * right[i + 1];
+    ```
+    - Think of it like this, the last element of left and the first element of right is the product of all the elements in the array so we ignore those, and if we have to calculate the product of all elements except the current one then we look towards the element at the same index in left array (because it contains the product of all the elements before the current element), and the element at current index + 1 in the right array (because it contains the product all elements after current element).
+    - The above approach was the linear space approach, to achieve constant space or O(1) space, we just need to modify the code that we have used for the linear approach.
+    - So if you observe carefully, we just need the element at index i from the left array and the element of index i + 1 from the right array to calculate the result.
+    - So using that knowledge we can calculate the product and store it in result array at the same time, of course we would have to do it twice because once from the left and next from the right.
+    - So just declare the result array of length nums.length, and make `res[0] = 1`
+    - Then run a loop from 1 to (i < nums.length) and do this
+    ```java
+        res[i] = res[i - 1] * nums[i];
+    ```
+    - Taking the above example into account the res array will become `[1, 2, 6]`
+    - Now take the last element from the nums array i.e. 4 and assign it to a variable, say tmp.
+    - Now run a loop from (i = nums.length - 2) to (i >= 0), and do this
+    ```java
+        res[i] *= tmp;
+        tmp *= nums[i];
+    ```
+    - So here we are basically building the right product array and at the same time modifying res.
+    - After the loop is done res becomes `[12, 8, 6]`, which is correct
+    - If you don't understand the constant space algorithm, pay close attention to the linear one, and then try to understand this, you'll get it.
