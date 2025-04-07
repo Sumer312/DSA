@@ -18,13 +18,14 @@
 14. [Longest consecutive sequence](#longest-consecutive-sequence)
 15. [3Sum](#3sum)
 16. [Product of array except self](#product-of-array-except-self)
-17. [House Robber](#house-robber)
-18. [Top k frequent elements](#top-k-frequent-elements)
-19. [Container with most water](#container-with-most-water)
-20. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
-21. [Longest increasing subsequence](#longest-increasing-subsequence)
-22. [Kth smallest element in BST]()
-23. [Lowest common ancestor of a BST]()
+17. [Set matrix zeros](#set-matrix-zeros)
+18. [House Robber](#house-robber)
+19. [Top k frequent elements](#top-k-frequent-elements)
+20. [Container with most water](#container-with-most-water)
+21. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+22. [Longest increasing subsequence](#longest-increasing-subsequence)
+23. [Kth smallest element in BST]()
+24. [Lowest common ancestor of a BST]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -404,3 +405,63 @@ Level order trevarsal =
     - So here we are basically building the right product array and at the same time modifying res.
     - After the loop is done res becomes `[12, 8, 6]`, which is correct
     - If you don't understand the constant space algorithm, pay close attention to the linear one, and then try to understand this, you'll get it.
+
+#### [Set matrix zeros](https://leetcode.com/problems/set-matrix-zeroes/)
+
+- Explanation:
+
+  - The brute force approach to solve this is straightforward, you just create another matrix and set zeros according to the matrix given in the question.
+  - Slightly more optimized approach will be to have 2 sets, one to store the rows which will be set to zero and the other to store the columns that will be set to zero. Here you just traverse the matrix and when you encounter that an element is zero store idx i in row set and idx j in column set. Then traverse the sets and make all the rows and columns zero accordingly.
+  - To understand the most optimized approach first understand what we are doing in the sets solution, because here we will be doing something similar but we will be using constant space.
+  - So instead of taking 2 sets we can use the first column and the first row in the matrix as markers, which will indicate if the row or column should be set to zero or not
+  - I will be calling the in place set as markers here
+
+  ```java
+  int[][] matrix = {
+      {0,1,2,0},
+      {3,0,5,2},
+      {1,3,1,5}
+  };
+  [[0,0,0,0],[0,0,0,0],[0,0,1,0]]
+  /*
+   so here we will use the row {0, 1, 2, 0}, and the column {0, 3, 1} as marker
+   so whenever matrix[i][j] == 0, then we set matrix[i][0] = 0 and matrix[0][j] = 0, for instance matrix[1][1] is zero in the above matrix.
+   Therefore, we will set matrix[1][0] to 0 and matrix[0][1] to 0
+   hence the matrix will become
+   {0,0,2,0},
+   {0,0,5,2},
+   {1,3,1,5}
+  */
+  ```
+
+  - But there is a problem, as if we use the entire first row to mark the indices of rows that are to be set to zero we will end up using the entire row, which leaves only 2 elements for the column, i.e. there will be a conflict at index `[0][0]`, the element at the index overlaps with both column and row markers.
+  - To solve this we will be declaring another variable, say `int colMarker` and set it to one.
+  - Now if any element at 0th row is 0, then will will set colMarker to zero.
+
+  ```java
+      int colMarker = 1
+      int[][] matrix2 = {
+          {1,0,2},
+          {3,2,5},
+          {1,3,1}
+      };
+      // after traversal colMarker will be set to zero because matrix2[0][1] is 0
+
+  ```
+
+  - Now when we starting setting elements to zero start i from 1 and j from 1, because we are using the row at index `[i][0]` and the column at index `[j][0]` as markers, so setting then first will mess up our marker.
+  - After all the elements excepts the markers are set, we will be coming to the marker elements.
+  - Check the value at `matrix[0][0]`, if that is zero then make the entire 0th column, i.e. `matrix[0][j]` as zero.
+  - Check the value colMarker, if that is zero then make the entire 0th row, i.e. `matrix[i][0]` as zero.
+  - The reason it is called colMarker is because it is being used for column, something like this
+
+  ```java
+    [a] [1, 2, 3]
+        [b]
+        [c]
+    // here a is the colMarker
+    // You could also do this if you want
+    [1] [a, 2, 3]
+        [b]
+        [c]
+  ```
