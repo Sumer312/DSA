@@ -20,13 +20,14 @@
 16. [Product of array except self](#product-of-array-except-self)
 17. [Set matrix zeros](#set-matrix-zeros)
 18. [Number of 1 bits](#number-of-1-bits)
-19. [House Robber](#house-robber)
-20. [Top k frequent elements](#top-k-frequent-elements)
-21. [Container with most water](#container-with-most-water)
-22. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
-23. [Longest increasing subsequence](#longest-increasing-subsequence)
-24. [Kth smallest element in BST]()
-25. [Lowest common ancestor of a BST]()
+19. [Sum of two integers](#sum-of-two-integers)
+20. [House Robber](#house-robber)
+21. [Top k frequent elements](#top-k-frequent-elements)
+22. [Container with most water](#container-with-most-water)
+23. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+24. [Longest increasing subsequence](#longest-increasing-subsequence)
+25. [Kth smallest element in BST]()
+26. [Lowest common ancestor of a BST]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -488,3 +489,52 @@ Level order trevarsal =
   ```
   - As you can see the loop only ran from 3 iterations and the number 11 has three 1's.
   - Same logic is used in this problem [Counting bits](https://leetcode.com/problems/counting-bits/)
+
+#### [Sum of two integers](https://leetcode.com/problems/sum-of-two-integers/)
+
+- Explanation:
+- If we are not to use + or - operator then this is how you add 2 integers
+- First keep in mind in addition we have 2 elements, one adding itself, and the other one is to add the carry
+- By using the XOR operator we can add the numbers without the carry, i.e.
+
+  ```
+      100 (4) + 110 (6) = 1010 (10)
+      100 (4) ^ 110 (6) = 010 (2)
+  ```
+
+  - In the above example you can see that 2 is not the answer to 4 + 6, but observe care fully, disregarding the MSB, we basically have the result, the only thing left is to add the carry
+  - To calculate the carry we can & the numbers
+
+  ```
+      100 & 110 = 100
+      100 << 1 = 1000 (8)
+
+      1000 ^ 0010 = 1010 (10)
+  ```
+
+  - So we just have to and the 2 numbers and shift the result by one place to the left, we do the shifting because the carry is added to the next set of digits, even in normal addition.
+  - Here's an example, the numbers are 2 and 3
+
+  ```
+     010 ^ 011 = 001
+     (010 & 011) << 1 = 0100
+
+     0001 ^ 0100 = 0101
+     (0001 & 0100) << 1 = 0000
+
+      herefore ans = 0101 = 5
+  ```
+
+  - The code is very short, this is the entire code btw.
+
+  ```java
+    int xor = a ^ b;
+    int and = (a & b) << 1;
+    while(and != 0){
+        int tmp = (xor & and) << 1;
+        xor = xor ^ and;
+        and = tmp;
+    }
+    return xor;
+  ```
+  - Don't do `and > 0`, because it will give issues with negative numbers.
