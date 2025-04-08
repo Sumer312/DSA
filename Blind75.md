@@ -19,13 +19,14 @@
 15. [3Sum](#3sum)
 16. [Product of array except self](#product-of-array-except-self)
 17. [Set matrix zeros](#set-matrix-zeros)
-18. [House Robber](#house-robber)
-19. [Top k frequent elements](#top-k-frequent-elements)
-20. [Container with most water](#container-with-most-water)
-21. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
-22. [Longest increasing subsequence](#longest-increasing-subsequence)
-23. [Kth smallest element in BST]()
-24. [Lowest common ancestor of a BST]()
+18. [Number of 1 bits](#number-of-1-bits)
+19. [House Robber](#house-robber)
+20. [Top k frequent elements](#top-k-frequent-elements)
+21. [Container with most water](#container-with-most-water)
+22. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+23. [Longest increasing subsequence](#longest-increasing-subsequence)
+24. [Kth smallest element in BST]()
+25. [Lowest common ancestor of a BST]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -465,3 +466,25 @@ Level order trevarsal =
         [b]
         [c]
   ```
+
+#### [Number of 1 bits](https://leetcode.com/problems/number-of-1-bits/)
+
+- Explanation:
+  - so the optimized approach is basically that the number of times the loop iterates is the number of 1's that are present in the binary representation of the number.
+  - we can achieve this by this forumla
+  ```java
+      n = n & (n - 1)
+  ```
+  - run the loop till n > 0
+  - lets take the example of number 11
+  ```java
+      11 = 1011
+      // 1st iter
+      11 & 10 = 1011 & 1010 = 1010 = 10
+      // 2st iter
+      10 & 9 = 1010 & 0111 = 0010 = 2
+      // 3st iter
+      2 & 1 = 010 & 001 = 0
+  ```
+  - As you can see the loop only ran from 3 iterations and the number 11 has three 1's.
+  - Same logic is used in this problem [Counting bits](https://leetcode.com/problems/counting-bits/)
