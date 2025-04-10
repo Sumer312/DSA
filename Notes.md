@@ -2,7 +2,7 @@
 
 - To identify a palindrome have 2 pointers from the middle, one goes towards the start and the other goes towards the end.
 - When dealing with a decision tree problem you do tend to get confused between (for loop) and (take or not take method) here's some points to help you
-  - usually use for loop method in subsequence problem because if there is an array say [1,2,3] and if you use this method the decision tree will look something like this
+  - usually use for loop method in subsequence problem because if there is an array say `[1,2,3]` and if you use this method the decision tree will look something like this
     ```
                     [_]
             /        |        \
@@ -20,6 +20,7 @@
        /   \      /   \        /   \      /     \
      [_]   [3]  [2]   [2,3] [1]  [1,3] [1,2]   [1,2,3]
     ```
+  - Please refer to my solution of [Longest ideal subsequence](#longest-ideal-subsequence), in the ExtraProblems md doc, to get more clarity on when to use what.
 - A monotonic stack is a stack with all increasing or all decreasing elements
 - To solve an anagram problem you need a map
 
