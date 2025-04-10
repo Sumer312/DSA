@@ -2,26 +2,27 @@
 
 ##### These are some extra problems that are not in any list per say but are very helpful
 
-1. [Longest palindromic subsequence](longest-palindromic-subsequence)
+1. [Longest palindromic subsequence](#longest-palindromic-subsequence)
 2. [Minimum Suffix Flips](#minimum-suffix-flips)
 3. [Minimum operations to make binary array elements equal to one 2](#minimum-operations-to-make-binary-array-elements-equal-to-one-2)
 4. [Single number 3](#single-number-3)
 5. [Remove all adjacent duplicates in string 2](#remove-all-adjacent-duplicates-in-string-2)
 6. [Sort characters by frequency](#sort-characters-by-frequency)
 7. [Find all duplicates in an array](#find-all-duplicates-in-an-array)
-8. [Subarray with k different integers]()
-9. [Flip equivalent binary trees]()
-10. [Remove duplicate letters]()
-11. [Continuous Subarray Sum]()
-12. [Maximum operations to reduce X to zero]()
-13. [Rotate array]()
-14. [Integer to roman]()
-15. [Determine if two strings are close]()
-16. [Increasing triplet subsequence]()
-17. [Path Sum 3]()
-18. [Remove all adjacent duplicates in string 2]()
-19. [Find peak element]()
-20. [Count vowel strings in ranges]()
+8. [Longest ideal subsequence](#longest-ideal-subsequence)
+9. [Subarray with k different integers]()
+10. [Flip equivalent binary trees]()
+11. [Remove duplicate letters]()
+12. [Continuous Subarray Sum]()
+13. [Maximum operations to reduce X to zero]()
+14. [Rotate array]()
+15. [Integer to roman]()
+16. [Determine if two strings are close]()
+17. [Increasing triplet subsequence]()
+18. [Path Sum 3]()
+19. [Remove all adjacent duplicates in string 2]()
+20. [Find peak element]()
+21. [Count vowel strings in ranges]()
 <!-- - [Remove all adjacent duplicates in string 1]() -->
 
 #### [Longest palindromic subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/)
@@ -37,7 +38,7 @@
   ```
 - The answer is 4
 - Explanation:
-  - Same as the above question except the second string is just the first string reversed here
+  - Same as [Longest common subsequence](#longest-common-subsequence) except the second string is just the first string reversed here
 
 #### [Minimum Suffix Flips](https://leetcode.com/problems/minimum-suffix-flips/)
 
@@ -206,3 +207,24 @@ arr[4 - 1] = -3
 arr[3 - 1] = -3
 // arr[3 - 1] is -3, that means 3 has already occurred in the array
 ```
+
+#### [Longest ideal subsequence](https://leetcode.com/problems/longest-ideal-subsequence/)
+
+- Example:
+  ```java
+      String s1 = "acfgbd"
+      String s2 = "acfgbdhijzlm"
+  ```
+- Explanation:
+
+  - This kinda helped me understand when to use take or skip in top down and when to use for loop
+  - So the reason the recursive calls under for loop do not work is because all the characters in the string are compared to the first character, for example take string s1, in that example every character after `a` is going to be compared to `a`, if the longest ideal subsequence starts from any other character our program will fail because or program is only calculating the longest ideal subsequence that starts at index 0. Take string s2 for instance, here the longest ideal subsequence starts at the character `f`, but the for loop approach gives us the wrong answer when we use it on string s2.
+  - So to solve this you need to use take or skip method. This is a 2d dp problem, i.e. there are going to be 2 parameters that we'll be tracking during recursive calls. One is the index and the other is the current character.
+  - When calling the top down dfs function make the current character as `#` or any other character and in the function write this
+
+  ```java
+    if(Math.abs(s.charAt(idx) - ch) <= k || ch == '#'){
+            res = Math.max(res, 1 + dfs(s, k, idx + 1, s.charAt(idx)));
+    }
+    res = Math.max(res, dfs(s, k, idx + 1, ch));
+  ```
