@@ -218,7 +218,7 @@ arr[3 - 1] = -3
 - Explanation:
 
   - This kinda helped me understand when to use take or skip in top down and when to use for loop
-  - So the reason the recursive calls under for loop do not work is because all the characters in the string are compared to the first character, for example take string s1, in that example every character after `a` is going to be compared to `a`, if the longest ideal subsequence starts from any other character our program will fail because or program is only calculating the longest ideal subsequence that starts at index 0. Take string s2 for instance, here the longest ideal subsequence starts at the character `f`, but the for loop approach gives us the wrong answer when we use it on string s2.
+  - So the reason the recursive calls under for loop do not work is because all the characters in the string are compared to the first character, for example take string s1, in that example every character after `a` is going to be compared to `a`, if the longest ideal subsequence starts from any other character our program will fail because our program is only calculating the longest ideal subsequence that starts at index 0. Take string s2 for instance, here the longest ideal subsequence starts at the character `f`, but the for loop approach gives us the wrong answer when we use it on string s2.
   - So to solve this you need to use take or skip method. This is a 2d dp problem, i.e. there are going to be 2 parameters that we'll be tracking during recursive calls. One is the index and the other is the current character.
   - When calling the top down dfs function make the current character as `#` or any other character and in the function write this
 
