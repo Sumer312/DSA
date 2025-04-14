@@ -547,11 +547,11 @@ Level order trevarsal =
   ```java
       int[][] interval = [[1, 2], [1, 3], [2, 3], [3, 4]];
       // number line visualization
-      //             0 1 2 3 4 5 6
-      // interval[0]   |-|
-      // interval[1]   |---|
-      // interval[2]     |-|
-      // interval[3]      |-|
+      //             0  1  2  3  4
+      // interval[0]    |--|
+      // interval[1]    |-----|
+      // interval[2]       |--|
+      // interval[3]          |--|
   ```
 - Explanation:
   - So to solve this problem you first sort the intervals based on the first element, in this approach I use a heap, and initialize a variable named count to 0.
@@ -570,9 +570,9 @@ Level order trevarsal =
     int[] cur = new int[2];
     while(!pq.isEmpty()){
         cur = pq.poll();
-        if(prev[1] > cur[0]){
+        if(prev[1] > cur[0]){ // checks for overlap
             count++;
-            if(prev[1] > cur[1]){
+            if(prev[1] > cur[1]){ // checks for which interval to ignore based of the end of each interval
                 prev = cur;
             }
             continue;
