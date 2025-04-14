@@ -5,29 +5,30 @@
 1. [Longest common subsequence](#longest-common-subsequence)
 2. [Jump Game](#jump-game)
 3. [Merge Intervals](#merge-intervals)
-4. [Group Anagrams](#group-anagrams)
-5. [Course Schedule](#course-schedule)
-6. [Minimum window substring](#minimum-window-substring)
-7. [Serialize and deserialize binary-tree](#serialize-and-deserialize-binary-tree)
-8. [Reorder List](#reorder-list)
-9. [Binary Level Order Traversal](#binary-level-order-traversal)
-10. [Rotate Image](#rotate-image)
-11. [Decode Ways](#decode-ways)
-12. [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
-13. [Validate Binary Search Tree](#validate-binary-search-tree)
-14. [Longest consecutive sequence](#longest-consecutive-sequence)
-15. [3Sum](#3sum)
-16. [Product of array except self](#product-of-array-except-self)
-17. [Set matrix zeros](#set-matrix-zeros)
-18. [Number of 1 bits](#number-of-1-bits)
-19. [Sum of two integers](#sum-of-two-integers)
-20. [House Robber](#house-robber)
-21. [Top k frequent elements](#top-k-frequent-elements)
-22. [Container with most water](#container-with-most-water)
-23. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
-24. [Longest increasing subsequence](#longest-increasing-subsequence)
-25. [Kth smallest element in BST]()
-26. [Lowest common ancestor of a BST]()
+4. [Non overlapping intervals](#non-overlapping-intervals)
+5. [Group Anagrams](#group-anagrams)
+6. [Course Schedule](#course-schedule)
+7. [Minimum window substring](#minimum-window-substring)
+8. [Serialize and deserialize binary-tree](#serialize-and-deserialize-binary-tree)
+9. [Reorder List](#reorder-list)
+10. [Binary Level Order Traversal](#binary-level-order-traversal)
+11. [Rotate Image](#rotate-image)
+12. [Decode Ways](#decode-ways)
+13. [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
+14. [Validate Binary Search Tree](#validate-binary-search-tree)
+15. [Longest consecutive sequence](#longest-consecutive-sequence)
+16. [3Sum](#3sum)
+17. [Product of array except self](#product-of-array-except-self)
+18. [Set matrix zeros](#set-matrix-zeros)
+19. [Number of 1 bits](#number-of-1-bits)
+20. [Sum of two integers](#sum-of-two-integers)
+21. [House Robber](#house-robber)
+22. [Top k frequent elements](#top-k-frequent-elements)
+23. [Container with most water](#container-with-most-water)
+24. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+25. [Longest increasing subsequence](#longest-increasing-subsequence)
+26. [Kth smallest element in BST]()
+27. [Lowest common ancestor of a BST]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -537,4 +538,45 @@ Level order trevarsal =
     }
     return xor;
   ```
+
   - Don't do `and > 0`, because it will give issues with negative numbers.
+
+#### [Non overlapping intervals](https://leetcode.com/problems/non-overlapping-intervals/)
+
+- Example:
+  ```java
+      int[][] interval = [[1, 2], [1, 3], [2, 3], [3, 4]];
+      // number line visualization
+      //             0 1 2 3 4 5 6
+      // interval[0]   |-|
+      // interval[1]   |---|
+      // interval[2]     |-|
+      // interval[3]      |-|
+  ```
+- Explanation:
+  - So to solve this problem you first sort the intervals based on the first element, in this approach I use a heap, and initialize a variable named count to 0.
+  - Then pop the first element out and assign it to a variable prev
+  - Then enter a while loop where start popping the elements
+  - Do include this at the end of the loop `prev = cur` where `cur = pq.poll()`
+  - If the prev interval and the cur interval overlap then you have to ignore the overlapping interval and increment the `count` variable.
+  - Now how do you know out of prev and cur which interval is overlapping, well you know that by looking the end of each interval.
+  - Consider 2 intervals `[1, 100]`, and `[1, 26]`
+  - Now `prev` could be `[1, 100]` or `[1, 26]`, and the same goes for `cur`, so you cannot just ignore either prev or cur, and then increment the count and move forward, that approach does not work.
+  - To properly ignore the overlapping element just compare the ending the of the 2 intervals, and ignore the one where the end is the greatest which in this case is `[1, 100]`
+  - After the loop ends return the count
+  - It'll look something like this, (this is basically the entire code)
+  ```java
+    int[] prev = pq.poll();
+    int[] cur = new int[2];
+    while(!pq.isEmpty()){
+        cur = pq.poll();
+        if(prev[1] > cur[0]){
+            count++;
+            if(prev[1] > cur[1]){
+                prev = cur;
+            }
+            continue;
+        }
+        prev = cur;
+    }
+  ```
