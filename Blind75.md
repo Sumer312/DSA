@@ -22,13 +22,15 @@
 18. [Set matrix zeros](#set-matrix-zeros)
 19. [Number of 1 bits](#number-of-1-bits)
 20. [Sum of two integers](#sum-of-two-integers)
-21. [House Robber](#house-robber)
-22. [Top k frequent elements](#top-k-frequent-elements)
-23. [Container with most water](#container-with-most-water)
-24. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
-25. [Longest increasing subsequence](#longest-increasing-subsequence)
-26. [Kth smallest element in BST]()
-27. [Lowest common ancestor of a BST]()
+21. [Clone Graph](#clone-graph)
+22. [Maximum Product subarray](#maximum-product-subarray)
+23. [House Robber](#house-robber)
+24. [Top k frequent elements](#top-k-frequent-elements)
+25. [Container with most water](#container-with-most-water)
+26. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+27. [Longest increasing subsequence](#longest-increasing-subsequence)
+28. [Kth smallest element in BST]()
+29. [Lowest common ancestor of a BST]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -580,3 +582,59 @@ Level order trevarsal =
         prev = cur;
     }
   ```
+
+#### [Clone Graph](https://leetcode.com/problems/clone-graph/)
+
+- Explanation:
+
+  - The first thought that comes to mind to solve this problem is to do a dfs with a hashset
+  - But here's the reason why that does not work, take this graph for instance
+
+  ```
+  (1)-------(2)
+   |         |
+   |         |
+  (3)-------(4)
+  ```
+
+  - Here if you start at one, you create a new node for 1 and you put old 1 in the seen set, the go to 2,
+
+    - then you create a new node for 2 and put 2 in the seen set then go to 4,
+    - then you create a new node for 4 put 4 in the seen set then go to 3,
+    - you cannot go to 1 from 3 because 1 is already in the seen set so you return back to the call where the current node is 1
+    - now when you try to go to 3 from 1, you would not be able to because 3 is already in the seen set
+    - therefore new 1 only has new 2 as it's neighbor, because a new node for 3 was never created.
+
+  - So to solve this we use a HashMap and we if `map.containsKey(currentNode)` then we `return map.get(currentNode)`, we are gonna map old one to new one
+    ```
+        1 -> new Node(1)
+    ```
+    - then we go to 2 and do the same
+    - and same for 4 and 3
+    - This is what our map looks like rn btw
+    ```
+        1 -> new Node(1)
+        2 -> new Node(2)
+        4 -> new Node(4)
+        3 -> new Node(3)
+    ```
+    - Now when the call stack finally returns to 1 and it goes to 3, then we hit the condition `map.containsKey(3)`, and therefore we return `map.get(3)`, which is a new node with the value 3.
+    - and that new node with the value 3 will be added as a neighbor to the new node with the value 1.
+  - Therefore the entire graph is cloned.
+
+#### [Maximum Product subarray](https://leetcode.com/problems/maximum-product-subarray/)
+
+- Explanation:
+  - This is really not as hard as it looks, and I still don't know why this is classified as a dynamic programming problem
+  - But to solve this we just use a modified version of Kadane's algorithm.
+  - The big problem with taking out the maximum product subarray is the fact that the array has -ve numbers
+  - Take this array for instance `[-1, -2, -3]` here the result is `6` because the product of `[-2, -3]` is 6.
+  - So at every step we are gonna calculate the current maximum and the minimum, and the res will be `Math.max(res, current_max)`
+  - So to assign the current max and min at every index of the array we do this.
+    - At every the max can be either `arr[i]`, `arr[i] * current_max` or `arr[i] * current_min`
+    - for example, `arr[i] = 4`, `current_max = -3, current_min = -3`, then the current_max will become 4
+    - for example, `arr[i] = -4`, `current_max = 3, current_min = -3`, then the current_max will become `arr[i] * current_min`, i.e. 12
+    - for example, `arr[i] = -1`, `current_max = 3, current_min = -3`, then the current_max will remain 3
+    - Same for the current minimum as well
+  - After calculating the current_max and current_min for the current index in the array you calculate res which will be `Math.max(res, current_max)`
+  - The when the loop ends return res
