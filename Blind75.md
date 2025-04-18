@@ -24,13 +24,15 @@
 20. [Sum of two integers](#sum-of-two-integers)
 21. [Clone Graph](#clone-graph)
 22. [Maximum Product subarray](#maximum-product-subarray)
-23. [House Robber](#house-robber)
-24. [Top k frequent elements](#top-k-frequent-elements)
-25. [Container with most water](#container-with-most-water)
-26. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
-27. [Longest increasing subsequence](#longest-increasing-subsequence)
-28. [Kth smallest element in BST]()
-29. [Lowest common ancestor of a BST]()
+23. [Binary tree maximum path sum](#binary-tree-maximum-path-sum)
+24. [Meeting rooms 2](#meeting-rooms-2)
+25. [House Robber](#house-robber)
+26. [Top k frequent elements](#top-k-frequent-elements)
+27. [Container with most water](#container-with-most-water)
+28. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+29. [Longest increasing subsequence](#longest-increasing-subsequence)
+30. [Kth smallest element in BST]()
+31. [Lowest common ancestor of a BST]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -638,3 +640,75 @@ Level order trevarsal =
     - Same for the current minimum as well
   - After calculating the current_max and current_min for the current index in the array you calculate res which will be `Math.max(res, current_max)`
   - The when the loop ends return res
+
+#### [Binary tree maximum path sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
+
+- Explanation:
+
+  - To solve this problem we must understand the concept of split, or diversion in a binary tree.
+  - So a path in a binary tree can at most have only one split, or one diversion.
+
+  ```
+      Valid path          Invalid path
+         /\                   /\
+        /  \                 / /\
+        \   \               /\
+            /
+  ```
+
+  - In the above diagram the first one is valid because it only has one split at the root, the second one has 3 splits. The reason atmost one split is allowed is because if you start from one end you can reach the other end, and the path does not diverge.
+  - So to solve this we are kinda doing a version of Kadane's algorithm. By that I mean at every node we will either be taking the sum of the split (taking the sum of the root, the left subtree, and the right subtree) if it is greater than the sum where we are not splitting.
+  - We can do that either by using a global variable or a local variable
+  - This is the entire code using a global variable
+
+  ```java
+      private static int res;
+      private static int dfs(TreeNode root){
+          if(root == null){
+              return 0;
+          }
+          int left = Math.max(dfs(root.left), 0);
+          int right = Math.max(dfs(root.right), 0);
+          //with the split
+          res = Math.max(res, root.val + left + right);
+          return root.val + Math.max(left, right);
+      }
+      // In the main function return dfs(root)
+  ```
+
+  - This is the entire code using local variables
+
+  ```java
+    private static int[] dfs(TreeNode root){
+        if(root == null){
+            return new int[]{0, Integer.MIN_VALUE};
+        }
+        int[] left = dfs(root.left);
+        int[] right = dfs(root.right);
+
+        left[0] = Math.max(left[0], 0);
+        right[0] = Math.max(right[0], 0);
+
+        int skipSplit = root.val + Math.max(left[0], right[0]);
+        int takeSplit = Math.max(Math.max(left[1], right[1]), root.val + left[0] + right[0]);
+        return new int[]{skipSplit, takeSplit};
+    }
+  // In the main function return dfs(root)[1]
+  ```
+
+  - The approach using global variable is more similar to Kadane's algorithm.
+  - The approach using local variables, we are basically returning `int[2]` where the 0th index has the sum without the split, and the 1st index has the maximum path sum
+  - And the reason we are doing `Math.max(dfs(root.left), 0)` or `Math.max(left[0], 0)` is because we also have the choice to not add the sum of a subtree, the left subtree in this case, we do this when adding the maximum sum from a subtree will decrease the value from our global maximum.
+
+#### [Meeting rooms 2](https://neetcode.io/problems/meeting-schedule-ii)
+
+- Explanation:
+  - The question is asking us to find out how many days it takes to conduct all the meetings without conflicts, or you can see it this way, how many meetings are conducted together, because if 2 meetings are clashing then the number of days it will take to conduct 2 meetings without any conflicts is 2. If the number of meetings are 5, and only 2 meetings are clashing in it, then your answer will also be 2.
+  - So we can say that the result will the maximum number of meeting that clashed, or the maximum number of meetings that were going on at one point of time.
+  - So to solve this, make a deep copy of the list, sort is based on the start time of the meeting
+  - Make another deep copy of the list and sort it based on the end time of the meeting.
+  - Start a loop where you have 2 pointers, one at the start of the `start time sorted list` which is '`i`, and one place the `end time sorted list` which is `j`, and also declare 2 variables, `count` and `res`.
+  - Now keep incrementing count if `start.get(i).start < end.get(j).end`, and also increment `i`, here `count` basically means how many meetings are current going on.
+  - If `end.get(j).end <= start.get(i).start`, decrement `count` and increment `j`.
+  - And while you do that also keep track the maximum value reached by `count` and store it in `res`.
+  - Return `res`.
