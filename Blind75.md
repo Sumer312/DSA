@@ -801,6 +801,7 @@ Level order trevarsal =
   - Then when we do a regular DFS on the graph with a seen hashset
   - But have both the `current node` and the `parent node` in the parameters of function and before making the recursive call check if the next node which we're about to go is is not parent
   - If that check is not present then recursive call will be made where our `current node` we be the previous call's `parent node`, since our adj list is bidirectional, and it will return false.
+  - The same concept of using parent node is applied in [number of components in an undirected graph](https://neetcode.io/problems/count-connected-components).
 
 #### [Construct binary tree from preorder and inorder traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 
