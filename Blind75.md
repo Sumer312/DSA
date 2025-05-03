@@ -862,10 +862,10 @@ Level order trevarsal =
   - Then increment top, because the top row has been added to the list.
   - Then check for this condition
   ```java
-      boolean flag = top <= bottom && left <= right;
-      if(!flag){
-          break;
-      }
+    boolean flag = top <= bottom && left <= right;
+    if(!flag){
+        break;
+    }
   ```
   - As show in the code above if the condition is false then break the outer `while` loop.
   - Now the start another for loop from `top` to `bottom` and add the variables to the list.
