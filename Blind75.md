@@ -32,14 +32,15 @@
 28. [Graph valid tree](#graph-valid-tree)
 29. [Construct binary tree from preorder and inorder traversal](#construct-binary-tree-from-preorder-and-inorder-traversal)
 30. [Spiral matrix](#spiral-matrix)
-31. [House Robber](#house-robber)
-32. [Top k frequent elements](#top-k-frequent-elements)
-33. [Container with most water](#container-with-most-water)
-34. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
-35. [Longest increasing subsequence](#longest-increasing-subsequence)
-36. [Kth smallest element in BST]()
-37. [Lowest common ancestor of a BST]()
-38. [Find Median From Data Stream]()
+31. [Word break](#word-break)
+32. [House Robber](#house-robber)
+33. [Top k frequent elements](#top-k-frequent-elements)
+34. [Container with most water](#container-with-most-water)
+35. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+36. [Longest increasing subsequence](#longest-increasing-subsequence)
+37. [Kth smallest element in BST]()
+38. [Lowest common ancestor of a BST]()
+39. [Find Median From Data Stream]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -890,3 +891,20 @@ Level order trevarsal =
   - Now increment right.
   - check the condition
   - Same goes on for the bottom row and the left most column.
+
+#### [Word break](https://leetcode.com/problems/word-break/)
+
+- Example:
+  ```java
+      String s = "leetcode";
+      List<String> wordDict = {"leet", "code", "leetcode"};
+  ```
+- Explanation:
+  - So to solve this we need to look at the string, and compare it with each and every string in our `wordDict`
+  - So for string `"leetcode"`, we see if the first `wordDict.get(i).length()` characters are equal to `wordDict.get(i)`
+  - If they are equal then we make a recursive call where we do the same thing only now on the characters of string after `wordDict.get(i).length`.
+  - And if `idx` is equal to `s.length()`, we return true.
+  - Note: `idx` is a variable which is used to indicate from which index the string should be compared to the elements in wordDict.
+  - So at the start `idx` will be 0, and then if any element matches `s.substring(idx, idx + wordDict.get(i).length())`, then in the next call `idx` will be `wordDict.get(i).length()`
+  - Therefore only `idx` will me memoized.
+  - Considering the above example `idx` will be 0 at first, then `idx` will be 4, because `s.substring(0, 4)` is equal to `leet`
