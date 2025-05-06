@@ -725,18 +725,36 @@ Level order trevarsal =
 - Example
   - The words in the trie are "bad", "app", "apple", "apps"
   ```
+  ^ means isEnd
+        root
+       /    \
+      a      b
+      |      |
+      p      a
+      |      |
+      p^     d^
+     / \
+   l^   s^
+   |
+   e^
+  ```
+  ```
+                                                       root
                                                       (children = {a -> *a, b -> b*}, isEnd = false)
-                                                      /                                           \
+                                           *a         /                                    *b     \
                                           (children = {p -> *p}, isEnd = false)           (children = {a -> *a}, isEnd = false)
-                                                   /                                                \
-                                      (children = {p -> *p}, isEnd = true)                 (children = {d -> *d}, isEnd = true)
-                                         /                      \
-                  (children = {l -> *l}, isEnd = false)     (children = {s -> *s}, isEnd = true)
-                                       /
-              (children = {e -> *e}, isEnd = true)
+                                       *p          /                                       *a       \
+                                      (children = {p -> *p}, isEnd = false)               (children = {d -> *d}, isEnd = false)
+               *p                    /                                                              *d  \
+              (children = {l -> *l, s -> *s}, isEnd = true)                                         (children = {}, isEnd = true)
+           *l                /                      *s   \
+          (children = {e -> *e}, isEnd = false)    (children = {}, isEnd = true)
+      *e             /
+     (children = {}, isEnd = true)
   ```
 - Explanation
-  - In the above illustration, the root node is of custom type `Node` which contains a `HashMap<Character, Node>` and a `boolean` variable.
+  - The 1st figure shows a very understandable view to a Trie and the second one is actually what is happenning, If you are confused by the second one the just follow the nodes i.e Node of `a` is `*a`, so `*a, *p, *p` make app and therefore we have isEnd set to true at the last `*p`
+  - In the 2nd figure, the root node is of custom type `Node` which contains a `HashMap<Character, Node>` and a `boolean` variable.
   - The children of root node contains `a` and `b`, the map.get(character) will give you the corresponding Node.
   - The children of Node `a` contains `p`, and the children of that contains `p` and so on.
   - If the character that the map is pointing to is the last character of the word then the `isEnd` variable is set to true;
