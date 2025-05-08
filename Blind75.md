@@ -34,13 +34,13 @@
 30. [Spiral matrix](#spiral-matrix)
 31. [Word break](#word-break)
 32. [Longest increasing subsequence](#longest-increasing-subsequence)
-33. [House Robber](#house-robber)
-34. [Top k frequent elements](#top-k-frequent-elements)
-35. [Container with most water](#container-with-most-water)
-36. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
-37. [Kth smallest element in BST]()
+33. [Kth smallest element in BST](#kth-smallest-element-in-a-bst)
+34. [Container with most water](#container-with-most-water)
+35. [House Robber](#house-robber)
+36. [Top k frequent elements](#top-k-frequent-elements)
+37. [Find Median From Data Stream]()
 38. [Lowest common ancestor of a BST]()
-39. [Find Median From Data Stream]()
+39. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -912,22 +912,31 @@ Level order trevarsal =
 #### [Longest increasing subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
 
 - Example:
-    ```java
-        int[] nums = {5,7,-24,12,13,2,3,12,5,6,35};
-    ```
+  ```java
+      int[] nums = {5,7,-24,12,13,2,3,12,5,6,35};
+  ```
 - Explanation:
-    - So to solve this problem you might think so start from index 0, calculate the LIS (longest increasing subsequence) starting at index 0, and while doing that you memoize all the indices you visit. Then go to index 1 and so on.
-    - The intuition is right but if you approach is this
-    ```java
-    for(int i = idx; i < nums.length; i++){
-        if(nums[i] > nums[idx]){
-            // recursive call
-        }
-    }
-    ```
-    - Then this will now work because the LIS for the entire array might start at an element that is less than `nums[0]`, so naturally when you arrive at that element your program will skip it because it is not greater than `nums[0]`
-    - Simple solution is that instead of comparing to `nums[0]`, compare it with a separate element, let's say `current` which has the values of `Integer.MIN_VALUE` during the first recursive call. This way we will be able to calculate the LIS for all indices and return the maximum of them.
-    - And one more thought in your mind will to memoize the value of `current`, instead of `idx`. The reason that does now work is clearly visible in the example.
-        - In the example there 2 occurrences of 12
-        - After the 1st occurrence are 2 elements that are greater than it, and after the 2nd occurrence there is only one element that is greater than it.
-        - This will lead to wrong values in the memo table and will give wrong answers
+  - So to solve this problem you might think so start from index 0, calculate the LIS (longest increasing subsequence) starting at index 0, and while doing that you memoize all the indices you visit. Then go to index 1 and so on.
+  - The intuition is right but if you approach is this
+  ```java
+  for(int i = idx; i < nums.length; i++){
+      if(nums[i] > nums[idx]){
+          // recursive call
+      }
+  }
+  ```
+  - Then this will now work because the LIS for the entire array might start at an element that is less than `nums[0]`, so naturally when you arrive at that element your program will skip it because it is not greater than `nums[0]`
+  - Simple solution is that instead of comparing to `nums[0]`, compare it with a separate element, let's say `current` which has the values of `Integer.MIN_VALUE` during the first recursive call. This way we will be able to calculate the LIS for all indices and return the maximum of them.
+  - And one more thought in your mind will to memoize the value of `current`, instead of `idx`. The reason that does now work is clearly visible in the example.
+    - In the example there 2 occurrences of 12
+    - After the 1st occurrence are 2 elements that are greater than it, and after the 2nd occurrence there is only one element that is greater than it.
+    - This will lead to wrong values in the memo table and will give wrong answers
+
+
+#### [Kth smallest element in BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+
+- Explanation: 
+    - Very naive approach will be to do an inorder traversal and during the traversal add elements to a list, then just return `list.get(k)`
+    - A slightly better approach is to do an inorder traversal, and before starting the traversal declare and initialize 2 variable `idx = 1` and `res = 0`
+    - Now while doing the traversal `if idx == k` then `res = root.val`
+    - Now if you want to return in the if condition, make sure you are incrementing right after the left recursive call and also make sure to start `idx = 0`
