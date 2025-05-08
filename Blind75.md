@@ -940,3 +940,30 @@ Level order trevarsal =
     - A slightly better approach is to do an inorder traversal, and before starting the traversal declare and initialize 2 variable `idx = 1` and `res = 0`
     - Now while doing the traversal `if idx == k` then `res = root.val`
     - Now if you want to return in the if condition, make sure you are incrementing right after the left recursive call and also make sure to start `idx = 0`
+
+#### [Container with most water](https://leetcode.com/problems/container-with-most-water/)
+
+```java
+
+   int[] arr = {1,8,6,2,5,4,8,3,7};
+
+   |
+   |     8                   8
+   |     8 ................. 8 ..... 7
+   |     8   6               8       7
+   |     8   6       5       8       7
+   |     8   6       5   4   8       7
+   |     8   6       5   4   8   3   7
+   |     8   6   2   5   4   8   3   7
+   | 1   8   6   2   5   4   8   3   7
+    -----------------------------------------
+```
+
+- Explanation:
+  - A very important 2 pointer problem, so if you observe the figure above we can say that the amount of water in a container is the distance between 2 pointers multiplied my the minimum height of the 2 pointers.
+  - So the approach is that we will start our 2 pointer at indices `0` and `arr.length - 1`, respectively. We also should declare and initialize a variable `res` to `0`.
+  - Now `if arr[i] > arr[j]` then we decrement j, think of it this way we are letting go of the smallest height of the two pillars we have, else we increment i.
+  - Meanwhile we should record the amount of water at each combination of `i` and `j`, therefore we do this before we get on with incrementing or decrementing pointers.
+  ```java
+     res = Math.max(res, (j - i) * Math.min(arr[i], arr[j]));
+  ```
