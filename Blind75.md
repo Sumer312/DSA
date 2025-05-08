@@ -34,7 +34,7 @@
 30. [Spiral matrix](#spiral-matrix)
 31. [Word break](#word-break)
 32. [Longest increasing subsequence](#longest-increasing-subsequence)
-33. [Kth smallest element in BST](#kth-smallest-element-in-a-bst)
+33. [Kth smallest element in a BST](#kth-smallest-element-in-a-bst)
 34. [Container with most water](#container-with-most-water)
 35. [House Robber](#house-robber)
 36. [Top k frequent elements](#top-k-frequent-elements)
@@ -933,7 +933,7 @@ Level order trevarsal =
     - This will lead to wrong values in the memo table and will give wrong answers
 
 
-#### [Kth smallest element in BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+#### [Kth smallest element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
 
 - Explanation: 
     - Very naive approach will be to do an inorder traversal and during the traversal add elements to a list, then just return `list.get(k)`
