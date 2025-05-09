@@ -37,10 +37,11 @@
 33. [Kth smallest element in a BST](#kth-smallest-element-in-a-bst)
 34. [Container with most water](#container-with-most-water)
 35. [House Robber](#house-robber)
-36. [Top k frequent elements](#top-k-frequent-elements)
-37. [Find Median From Data Stream]()
-38. [Lowest common ancestor of a BST]()
-39. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+36. [House Robber 2](#house-robber-2)
+37. [Top k frequent elements](#top-k-frequent-elements)
+38. [Find Median From Data Stream]()
+39. [Lowest common ancestor of a BST]()
+40. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -968,3 +969,26 @@ Level order trevarsal =
   ```java
      res = Math.max(res, (j - i) * Math.min(arr[i], arr[j]));
   ```
+
+#### [House Robber](https://leetcode.com/problems/house-robber/)
+
+- Explanation:
+  - This is a very basic DP problem. To solve this we will need a very basic helper function that returns `int` and the parameters of the function will be `int[] nums, int idx`.
+  - Now you choose the house at index 0 and go till the last house, without robbing from the adjacent houses, now you do that by sending `i + 2`, as index in the next recursive call of the helper function.
+  - Now when the recursive function returns a value then change the value of `res` variable if the value returned is greater than `res`
+  - Then you choose the house at index 1 and do the same.
+  - While making recursive calls memoize the index variable
+  - Something like this
+  ```java
+      int res = 0;
+      for(int i = idx; i < nums.length; i++){
+          res = Math.max(res, nums[i] + helper(nums, i + 2));
+      }
+  ```
+
+#### [House Robber 2](https://leetcode.com/problems/house-robber-ii/)
+
+- Explanation:
+  - Basically the same as [House Robber](https://leetcode.com/problems/house-robber/), but the only changes you are going to make are these
+  - You will make 2 calls to the recursive function, one starting at index 0, and the other at index 1, now in the call where you start from zero, make sure that you are not visiting the last element in the array (because they are adjacent), you can do that by passing a variable `isZero` or someting to the recursive call.
+  - Just return the max of the 2 recursive calls.
