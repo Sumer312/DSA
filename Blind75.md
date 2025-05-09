@@ -908,6 +908,8 @@ Level order trevarsal =
   - So at the start `idx` will be 0, and then if any element matches `s.substring(idx, idx + wordDict.get(i).length())`, then in the next call `idx` will be `wordDict.get(i).length()`
   - Therefore only `idx` will me memoized.
   - Considering the above example `idx` will be 0 at first, then `idx` will be 4, because `s.substring(0, 4)` is equal to `leet`
+  - Also a memo of type `boolean[]` does not work because when a memo is of type `int[]` we can fill the array with -1 and then check `if(memo[idx] != -1)`, but if it of type `boolean[]` then we can't check `if(memo[idx])`, because what if idx returns a false, and we can't even do `if(!memo[idx])` because the memo is filled with `false` by default.
+  - Therefore for our memo we will choose `Map<Integer, Boolean>` type and we will check `if(memo.containsKey(idx))`
 
 #### [Longest increasing subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
 
@@ -932,14 +934,13 @@ Level order trevarsal =
     - After the 1st occurrence are 2 elements that are greater than it, and after the 2nd occurrence there is only one element that is greater than it.
     - This will lead to wrong values in the memo table and will give wrong answers
 
-
 #### [Kth smallest element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
 
-- Explanation: 
-    - Very naive approach will be to do an inorder traversal and during the traversal add elements to a list, then just return `list.get(k)`
-    - A slightly better approach is to do an inorder traversal, and before starting the traversal declare and initialize 2 variable `idx = 1` and `res = 0`
-    - Now while doing the traversal `if idx == k` then `res = root.val`
-    - Now if you want to return in the if condition, make sure you are incrementing right after the left recursive call and also make sure to start `idx = 0`
+- Explanation:
+  - Very naive approach will be to do an inorder traversal and during the traversal add elements to a list, then just return `list.get(k)`
+  - A slightly better approach is to do an inorder traversal, and before starting the traversal declare and initialize 2 variable `idx = 1` and `res = 0`
+  - Now while doing the traversal `if idx == k` then `res = root.val`
+  - Now if you want to return in the if condition, make sure you are incrementing right after the left recursive call and also make sure to start `idx = 0`
 
 #### [Container with most water](https://leetcode.com/problems/container-with-most-water/)
 
