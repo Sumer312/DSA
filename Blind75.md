@@ -992,3 +992,13 @@ Level order trevarsal =
   - Basically the same as [House Robber](https://leetcode.com/problems/house-robber/), but the only changes you are going to make are these
   - You will make 2 calls to the recursive function, one starting at index 0, and the other at index 1, now in the call where you start from zero, make sure that you are not visiting the last element in the array (because they are adjacent), you can do that by passing a variable `isZero` or someting to the recursive call.
   - Just return the max of the 2 recursive calls.
+
+
+#### [Top k frequent elements](https://leetcode.com/problems/top-k-frequent-elements/)
+
+- Explanation:
+    - This is a very basic bucket sort question. To solve this first compute the maximum occurrence of any element in the array, do this using by using a hashmap and the going over the hashamp computing for the max occurrence.
+    - After that do this `List<Integer> bucket = new List[max_occurrence + 1]`, here max_occurrence is the maximum occurrence of any element in the array, `+ 1` because we would not be able to fit the elements which have `max_occurrence` frequency in the bucket if it weren't for `+ 1`
+    - Then to through the hashamp which has all the frequencies and just add the element with that particular frequency to the appropriate index in `bucket`, which would be `bucket[frequency_of_element].add(element)`
+    - Then just traverse the bucket from the back and add elements to a list while decrementing k till k > 0.
+    - Then just return the list.
