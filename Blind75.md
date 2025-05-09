@@ -39,9 +39,9 @@
 35. [House Robber](#house-robber)
 36. [House Robber 2](#house-robber-2)
 37. [Top k frequent elements](#top-k-frequent-elements)
-38. [Find Median From Data Stream]()
-39. [Lowest common ancestor of a BST]()
-40. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+38. [Find Median From Data Stream](#find-median-from-data-stream)
+39. [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+40. [Lowest common ancestor of a BST]()
 
 #### [Longest common subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
